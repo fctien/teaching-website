@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FC Tien 教授 ｜ 教學網站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== Navbar ===== -->
+<nav class="navbar">
+  <a href="#" class="logo" data-section="home">
+    <img src="images/logo.png" alt="Logo">
+    <span>Prof. Tien</span>
+  </a>
+
+  <button class="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
+  <ul class="nav-links">
+    <li><a href="#" data-section="home" data-i18n="nav_home">首頁</a></li>
+    <li><a href="#" data-section="about" data-i18n="nav_about">關於我</a></li>
+    <li><a href="#" data-section="courses" data-i18n="nav_courses">課程</a></li>
+    <li><a href="#" data-section="videos" data-i18n="nav_videos">教學影片</a></li>
+    <li><a href="#" data-section="resources" data-i18n="nav_resources">教學資源</a></li>
+    <li><a href="#" data-section="quiz" data-i18n="nav_quiz">測驗系統</a></li>
+    <li><a href="#" data-section="homework" data-i18n="nav_homework">作業系統</a></li>
+    <li id="navAdminItem" style="display:none;"><a href="#" data-section="admin" data-i18n="nav_admin" style="color:var(--accent);font-weight:700;">管理後台</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button id="langToggle" onclick="toggleLang()">EN</button>
+    <a href="#" id="navLoginBtn" class="login-btn" data-i18n="nav_login" onclick="openLoginModal(); return false;">登入</a>
+    <div id="navUserInfo" class="user-info" style="display:none;">
+      <span data-i18n="nav_welcome">歡迎，</span><span id="navUserName"></span>
+      <a href="#" class="login-btn" onclick="showChangePwdForm(); return false;" data-i18n="change_pwd_link" style="margin-left:0.3rem;font-size:0.8rem;padding:0.3rem 0.6rem;">變更密碼</a>
+      <a href="#" class="login-btn" data-i18n="nav_logout" onclick="doLogout(); return false;" style="margin-left:0.3rem;font-size:0.8rem;padding:0.3rem 0.6rem;">登出</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== Home / Hero ===== -->
+<section id="home" class="section hero active">
+  <div class="hero-content">
+    <img src="images/profile.jpg" alt="Profile" class="hero-avatar">
+    <h1 data-i18n="hero_title">FC Tien 教授</h1>
+    <h2 data-i18n="hero_subtitle">國立臺北科技大學</h2>
+    <h3 data-i18n="hero_dept">工業工程與管理系 ｜ 智慧視覺檢測實驗室</h3>
+    <div class="hero-btns">
+      <button class="btn btn-primary" data-section="courses" data-i18n="hero_btn_courses">瀏覽課程</button>
+      <button class="btn btn-outline" data-section="about" data-i18n="hero_btn_about">認識我</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section id="about" class="section">
+  <h2 class="section-title" data-i18n="about_title">關於我</h2>
+  <div class="about-grid">
+    <img src="images/profile.jpg" alt="Profile" class="about-photo">
+    <div class="about-info">
+      <p data-i18n="about_desc">FC Tien 教授任職於國立臺北科技大學工業工程與管理系 ｜ 智慧視覺檢測實驗室...</p>
+
+      <h3 data-i18n="about_research">研究領域</h3>
+      <div class="research-tags" id="researchTags"></div>
+
+      <h3 data-i18n="about_email">電子郵件</h3>
+      <div class="about-contact-item">
+        <span>📧</span>
+        <a href="mailto:fctien@mail.ntut.edu.tw">fctien@mail.ntut.edu.tw</a>
+      </div>
+
+      <h3 data-i18n="about_office">辦公室</h3>
+      <div class="about-contact-item">
+        <span>🏫</span>
+        <span data-i18n="about_office_val">國立臺北科技大學</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Courses ===== -->
+<section id="courses" class="section">
+  <h2 class="section-title" data-i18n="courses_title">課程列表</h2>
+  <div class="course-grid">
+    <!-- Course 1 -->
+    <div class="course-card">
+      <div class="course-header">
+        <div class="course-icon">👁️</div>
+        <h3 data-i18n="course1_title">機器視覺與應用</h3>
+      </div>
+      <div class="course-body">
+        <p data-i18n="course1_desc"></p>
+        <h4 style="font-size:0.85rem;color:var(--primary);margin-bottom:0.5rem;" data-i18n="course_topics_label">課程主題</h4>
+        <ul class="course-topics" id="course1Topics"></ul>
+      </div>
+    </div>
+    <!-- Course 2 -->
+    <div class="course-card">
+      <div class="course-header">
+        <div class="course-icon">🤖</div>
+        <h3 data-i18n="course2_title">人工智慧與 Python 程式設計</h3>
+      </div>
+      <div class="course-body">
+        <p data-i18n="course2_desc"></p>
+        <h4 style="font-size:0.85rem;color:var(--primary);margin-bottom:0.5rem;" data-i18n="course_topics_label">課程主題</h4>
+        <ul class="course-topics" id="course2Topics"></ul>
+      </div>
+    </div>
+    <!-- Course 3 -->
+    <div class="course-card">
+      <div class="course-header">
+        <div class="course-icon">🧠</div>
+        <h3 data-i18n="course3_title">深度學習 — 使用 PyTorch</h3>
+      </div>
+      <div class="course-body">
+        <p data-i18n="course3_desc"></p>
+        <h4 style="font-size:0.85rem;color:var(--primary);margin-bottom:0.5rem;" data-i18n="course_topics_label">課程主題</h4>
+        <ul class="course-topics" id="course3Topics"></ul>
+      </div>
+    </div>
+    <!-- Course 4 -->
+    <div class="course-card">
+      <div class="course-header">
+        <div class="course-icon">🤝</div>
+        <h3 data-i18n="course4_title">AI Agent</h3>
+      </div>
+      <div class="course-body">
+        <p data-i18n="course4_desc"></p>
+        <h4 style="font-size:0.85rem;color:var(--primary);margin-bottom:0.5rem;" data-i18n="course_topics_label">課程主題</h4>
+        <ul class="course-topics" id="course4Topics"></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Videos ===== -->
+<section id="videos" class="section">
+  <h2 class="section-title" data-i18n="videos_title">教學影片</h2>
+  <p class="section-desc" data-i18n="videos_desc"></p>
+
+  <div class="video-channel-bar">
+    <div class="channel-info">
+      <div class="channel-avatar">T</div>
+      <div>
+        <strong>Prof. FC Tien's Channel</strong>
+        <p style="font-size:0.82rem;color:var(--text-light);">YouTube</p>
+      </div>
+    </div>
+    <a href="https://www.youtube.com/channel/UCWvAFNxvB59MLKITHHxx8jg" target="_blank"
+       class="btn btn-primary" style="font-size:0.85rem;" data-i18n="videos_channel_btn">訂閱頻道</a>
+  </div>
+
+  <div class="video-filter-bar" id="videoFilters"></div>
+  <div class="video-count" id="videoCount"></div>
+  <div class="video-grid" id="videoGrid"></div>
+</section>
+
+<!-- ===== Resources ===== -->
+<section id="resources" class="section">
+  <h2 class="section-title" data-i18n="resources_title">教學資源</h2>
+  <p class="section-desc" data-i18n="resources_desc"></p>
+
+  <div class="login-required-box">
+    <div class="lock-icon">🔒</div>
+    <p data-i18n="resources_login_required">請先登入以存取教學資源</p>
+    <button class="btn btn-primary" onclick="openLoginModal()" data-i18n="nav_login">登入</button>
+  </div>
+
+  <div class="protected-content" style="display:none;" id="resourceList"></div>
+</section>
+
+<!-- ===== Quiz ===== -->
+<section id="quiz" class="section">
+  <h2 class="section-title" data-i18n="quiz_title">測驗系統</h2>
+  <p class="section-desc" data-i18n="quiz_desc"></p>
+
+  <div class="login-required-box">
+    <div class="lock-icon">🔒</div>
+    <p data-i18n="quiz_login_required">請先登入以進行測驗</p>
+    <button class="btn btn-primary" onclick="openLoginModal()" data-i18n="nav_login">登入</button>
+  </div>
+
+  <div class="protected-content" style="display:none;">
+    <div class="quiz-container">
+      <h3 data-i18n="quiz_select_course" style="margin-bottom:0.5rem;">選擇課程</h3>
+      <div class="quiz-select">
+        <button class="quiz-course-btn" data-course="course1" onclick="selectQuizCourse('course1')">
+          <div>👁️</div>
+          <span data-i18n="course1_title">機器視覺與應用</span>
+        </button>
+        <button class="quiz-course-btn" data-course="course2" onclick="selectQuizCourse('course2')">
+          <div>🤖</div>
+          <span data-i18n="course2_title">人工智慧與 Python</span>
+        </button>
+        <button class="quiz-course-btn" data-course="course3" onclick="selectQuizCourse('course3')">
+          <div>🧠</div>
+          <span data-i18n="course3_title">深度學習 PyTorch</span>
+        </button>
+        <button class="quiz-course-btn" data-course="course4" onclick="selectQuizCourse('course4')">
+          <div>🤝</div>
+          <span data-i18n="course4_title">AI Agent</span>
+        </button>
+      </div>
+
+      <div class="quiz-area" id="quizArea">
+        <div class="quiz-progress">
+          <span id="quizProgressText"></span>
+        </div>
+        <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-nav">
+          <button class="btn btn-outline" style="color:var(--primary);border-color:var(--primary);"
+                  id="quizPrevBtn" onclick="quizPrev()" data-i18n="quiz_prev">上一題</button>
+          <button class="btn btn-primary" id="quizNextBtn">下一題</button>
+        </div>
+      </div>
+
+      <div class="quiz-result-box" id="quizResult">
+        <h3 data-i18n="quiz_result">測驗結果</h3>
+        <div class="quiz-score-circle">
+          <span class="quiz-score-num" id="quizScoreNum">0%</span>
+          <span class="quiz-score-label" data-i18n="quiz_score">您的分數</span>
+        </div>
+        <p id="quizCorrectCount"></p>
+        <button class="btn btn-primary" onclick="retryQuiz()" style="margin-top:1rem;" data-i18n="quiz_retry">重新測驗</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Homework ===== -->
+<section id="homework" class="section">
+  <h2 class="section-title" data-i18n="hw_title">作業系統</h2>
+  <p class="section-desc" data-i18n="hw_desc"></p>
+
+  <div class="login-required-box">
+    <div class="lock-icon">🔒</div>
+    <p data-i18n="hw_login_required">請先登入以查看作業</p>
+    <button class="btn btn-primary" onclick="openLoginModal()" data-i18n="nav_login">登入</button>
+  </div>
+
+  <div class="protected-content" style="display:none;">
+    <div class="hw-container">
+      <div class="hw-select">
+        <label data-i18n="hw_course_select" style="font-weight:600;margin-right:0.5rem;">選擇課程</label>
+        <select id="hwCourseSelect" onchange="renderHomework()">
+          <option value="">--</option>
+          <option value="course1" data-i18n="course1_title">機器視覺與應用</option>
+          <option value="course2" data-i18n="course2_title">人工智慧與 Python</option>
+          <option value="course3" data-i18n="course3_title">深度學習 PyTorch</option>
+          <option value="course4" data-i18n="course4_title">AI Agent</option>
+        </select>
+      </div>
+      <div class="hw-list" id="hwList">
+        <p style="text-align:center;color:var(--text-light);" data-i18n="hw_no_hw">目前沒有作業</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Admin Panel ===== -->
+<section id="admin" class="section">
+  <h2 class="section-title" data-i18n="admin_title">管理後台</h2>
+
+  <div class="admin-tabs">
+    <button class="admin-tab selected" data-tab="admin-students" onclick="switchAdminTab('admin-students')" data-i18n="admin_tab_students">學生名冊</button>
+    <button class="admin-tab" data-tab="admin-homework" onclick="switchAdminTab('admin-homework')" data-i18n="admin_tab_homework">作業批改</button>
+    <button class="admin-tab" data-tab="admin-quiz" onclick="switchAdminTab('admin-quiz')" data-i18n="admin_tab_quiz">測驗成績</button>
+    <button class="admin-tab" data-tab="admin-accounts" onclick="switchAdminTab('admin-accounts')" data-i18n="admin_tab_accounts">帳號管理</button>
+  </div>
+
+  <!-- Student Roster Tab -->
+  <div class="admin-panel" id="admin-students">
+    <div class="admin-toolbar">
+      <select id="adminStudentCourse" onchange="renderAdminStudents()">
+        <option value="all" data-i18n="admin_all_courses">全部課程</option>
+        <option value="course1" data-i18n="course1_title">機器視覺與應用</option>
+        <option value="course2" data-i18n="course2_title">人工智慧與 Python</option>
+        <option value="course3" data-i18n="course3_title">深度學習 PyTorch</option>
+        <option value="course4" data-i18n="course4_title">AI Agent</option>
+      </select>
+      <span id="adminStudentCount" class="admin-count"></span>
+    </div>
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="adminStudentTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-i18n="admin_student_id">學號</th>
+            <th data-i18n="admin_student_name">姓名</th>
+            <th data-i18n="admin_select_course">課程</th>
+            <th data-i18n="admin_student_pwd_status">密碼狀態</th>
+            <th data-i18n="admin_reset_pwd">操作</th>
+          </tr>
+        </thead>
+        <tbody id="adminStudentBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Homework Grading Tab -->
+  <div class="admin-panel" id="admin-homework" style="display:none;">
+    <div class="admin-toolbar">
+      <select id="adminHwCourse" onchange="renderAdminHomework()">
+        <option value="">-- <span data-i18n="admin_select_course">選擇課程</span> --</option>
+        <option value="course1" data-i18n="course1_title">機器視覺與應用</option>
+        <option value="course2" data-i18n="course2_title">人工智慧與 Python</option>
+        <option value="course3" data-i18n="course3_title">深度學習 PyTorch</option>
+        <option value="course4" data-i18n="course4_title">AI Agent</option>
+      </select>
+    </div>
+    <div id="adminHwContent"></div>
+  </div>
+
+  <!-- Quiz Results Tab -->
+  <div class="admin-panel" id="admin-quiz" style="display:none;">
+    <div class="admin-toolbar">
+      <select id="adminQuizCourse" onchange="renderAdminQuiz()">
+        <option value="">-- <span data-i18n="admin_select_course">選擇課程</span> --</option>
+        <option value="course1" data-i18n="course1_title">機器視覺與應用</option>
+        <option value="course2" data-i18n="course2_title">人工智慧與 Python</option>
+        <option value="course3" data-i18n="course3_title">深度學習 PyTorch</option>
+        <option value="course4" data-i18n="course4_title">AI Agent</option>
+      </select>
+    </div>
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="adminQuizTable" style="display:none;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-i18n="admin_quiz_student">學生</th>
+            <th data-i18n="admin_student_id">學號</th>
+            <th data-i18n="admin_quiz_score">分數</th>
+            <th data-i18n="admin_quiz_date">測驗時間</th>
+          </tr>
+        </thead>
+        <tbody id="adminQuizBody"></tbody>
+      </table>
+      <p id="adminQuizEmpty" data-i18n="admin_quiz_no_results" style="text-align:center;color:var(--text-light);padding:2rem;">目前沒有測驗紀錄</p>
+    </div>
+  </div>
+
+  <!-- Account Management Tab -->
+  <div class="admin-panel" id="admin-accounts" style="display:none;">
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="adminAccountTable">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th data-i18n="admin_student_id">帳號</th>
+            <th data-i18n="admin_student_name">姓名</th>
+            <th data-i18n="admin_student_role">角色</th>
+            <th data-i18n="admin_student_pwd_status">密碼狀態</th>
+            <th data-i18n="admin_reset_pwd">操作</th>
+          </tr>
+        </thead>
+        <tbody id="adminAccountBody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p data-i18n="footer_text">© 2026 FC Tien 教授 ｜ 國立臺北科技大學 工業工程與管理系 ｜ 智慧視覺檢測實驗室</p>
+  <p style="margin-top:0.5rem;">
+    <a href="mailto:fctien@mail.ntut.edu.tw">fctien@mail.ntut.edu.tw</a> ｜
+    <a href="https://www.youtube.com/channel/UCWvAFNxvB59MLKITHHxx8jg" target="_blank">YouTube</a>
+  </p>
+</footer>
+
+<!-- ===== Login Modal ===== -->
+<div class="modal-overlay" id="loginModal" onclick="if(event.target===this)closeLoginModal()">
+  <div class="modal" style="position:relative;">
+    <button class="modal-close" onclick="closeLoginModal()">&times;</button>
+
+    <!-- Login Form -->
+    <div id="loginForm">
+      <h2 data-i18n="login_title">登入</h2>
+      <div class="form-group">
+        <label data-i18n="login_username">帳號（學號）</label>
+        <input type="text" id="loginUsername" placeholder="學號">
+      </div>
+      <div class="form-group">
+        <label data-i18n="login_password">密碼</label>
+        <input type="password" id="loginPassword" placeholder="密碼">
+      </div>
+      <p style="font-size:0.8rem;color:var(--text-light);margin-top:0.3rem;" data-i18n="login_default_pwd">預設密碼為您的學號</p>
+      <div class="form-error" id="loginError"></div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="doLogin()" data-i18n="login_btn">登入</button>
+      </div>
+      <div class="form-toggle">
+        <a onclick="showRegisterForm()" data-i18n="login_register">訪客註冊</a>
+      </div>
+    </div>
+
+    <!-- Register Form (Visitors) -->
+    <div id="registerForm" style="display:none;">
+      <h2 data-i18n="register_title">訪客註冊</h2>
+      <div class="form-group">
+        <label data-i18n="login_username">帳號</label>
+        <input type="text" id="regUsername" placeholder="帳號">
+      </div>
+      <div class="form-group">
+        <label data-i18n="login_password">密碼</label>
+        <input type="password" id="regPassword" placeholder="密碼">
+      </div>
+      <div class="form-error" id="regError"></div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="doRegister()" data-i18n="register_btn">註冊</button>
+      </div>
+      <div class="form-toggle">
+        <a onclick="showLoginForm()" data-i18n="login_title">登入</a>
+      </div>
+    </div>
+
+    <!-- Change Password Form -->
+    <div id="changePwdForm" style="display:none;">
+      <h2 data-i18n="change_pwd_title">變更密碼</h2>
+      <div class="form-group">
+        <label data-i18n="change_pwd_old">舊密碼</label>
+        <input type="password" id="changePwdOld" placeholder="舊密碼">
+      </div>
+      <div class="form-group">
+        <label data-i18n="change_pwd_new">新密碼</label>
+        <input type="password" id="changePwdNew" placeholder="新密碼">
+      </div>
+      <div class="form-group">
+        <label data-i18n="change_pwd_confirm">確認新密碼</label>
+        <input type="password" id="changePwdConfirm" placeholder="確認新密碼">
+      </div>
+      <div class="form-error" id="changePwdError"></div>
+      <div class="form-actions">
+        <button class="btn btn-primary" onclick="doChangePwd()" data-i18n="change_pwd_btn">變更密碼</button>
+      </div>
+      <div class="form-toggle">
+        <a onclick="closeLoginModal()" data-i18n="nav_home">返回</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Scripts ===== -->
+<script src="js/i18n.js"></script>
+<script src="js/data.js"></script>
+<script src="js/students.js"></script>
+<script src="js/youtube.js"></script>
+<script src="js/app.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    renderCourseTopics();
+    renderResearchTags();
+    renderResources();
+    renderVideoFilters();
+    initVideos();
+  });
+</script>
+</body>
+</html>
