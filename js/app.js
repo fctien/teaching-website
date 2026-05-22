@@ -218,27 +218,45 @@ function renderResources() {
   container.innerHTML = "";
 
   resourceData.forEach((cat) => {
+    // Skip empty categories
+    if (cat.items.length === 0 && !cat.folderUrl) return;
+
     const catDiv = document.createElement("div");
     catDiv.className = "resource-category";
     catDiv.innerHTML = `<h3>${t(cat.category)}</h3>`;
 
-    const list = document.createElement("div");
-    list.className = "resource-list";
-
-    cat.items.forEach((item) => {
-      const name = currentLang === "zh" ? item.name_zh : item.name_en;
-      const desc = currentLang === "zh" ? item.desc_zh : item.desc_en;
-      list.innerHTML += `
-        <a href="${item.url}" target="_blank" class="resource-item">
-          <div class="resource-icon">PDF</div>
-          <div class="resource-details">
-            <h4>${name}</h4>
-            <p>${desc}</p>
-          </div>
+    // Folder link button
+    if (cat.folderUrl) {
+      const folderBtn = document.createElement("div");
+      folderBtn.style.cssText = "margin-bottom:1rem;";
+      folderBtn.innerHTML = `
+        <a href="${cat.folderUrl}" target="_blank" class="resource-folder-btn">
+          📁 ${currentLang === "zh" ? "開啟 Google Drive 資料夾（下載所有教材）" : "Open Google Drive Folder (Download All)"}
         </a>`;
-    });
+      catDiv.appendChild(folderBtn);
+    }
 
-    catDiv.appendChild(list);
+    if (cat.items.length > 0) {
+      const list = document.createElement("div");
+      list.className = "resource-list";
+
+      cat.items.forEach((item) => {
+        const name = currentLang === "zh" ? item.name_zh : item.name_en;
+        const desc = currentLang === "zh" ? item.desc_zh : item.desc_en;
+        const icon = item.name_zh.includes("程式") || item.name_zh.includes("code") ? "💻" : "PDF";
+        list.innerHTML += `
+          <a href="${item.url}" target="_blank" class="resource-item">
+            <div class="resource-icon">${icon}</div>
+            <div class="resource-details">
+              <h4>${name}</h4>
+              <p>${desc}</p>
+            </div>
+          </a>`;
+      });
+
+      catDiv.appendChild(list);
+    }
+
     container.appendChild(catDiv);
   });
 }
