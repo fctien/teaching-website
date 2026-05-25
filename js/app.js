@@ -107,6 +107,8 @@ function openLoginModal() {
   document.getElementById("loginForm").style.display = "block";
   document.getElementById("registerForm").style.display = "none";
   document.getElementById("changePwdForm").style.display = "none";
+  // Clear all form fields
+  document.querySelectorAll("#loginModal input").forEach((input) => (input.value = ""));
   clearFormErrors();
 }
 
@@ -219,6 +221,11 @@ async function doRegister() {
 function doLogout() {
   currentUser = null;
   localStorage.removeItem("currentUser");
+  // Clear login form fields
+  const loginUser = document.getElementById("loginUsername");
+  const loginPwd = document.getElementById("loginPassword");
+  if (loginUser) loginUser.value = "";
+  if (loginPwd) loginPwd.value = "";
   updateAuthUI();
   showSection("home");
 }
