@@ -1,0 +1,6 @@
+# Sensitive data - student roster and credentials
+js/students.js
+
+# OS files
+.DS_Store
+Thumbs.db

@@ -264,15 +264,16 @@ function renderVideoGrid() {
     return;
   }
 
+  const esc = typeof escapeHtml === "function" ? escapeHtml : (s) => s;
   let html = filtered
     .map((v) => `
       <div class="video-card">
-        <div class="video-thumb" onclick="playVideo(this, '${v.id}')">
-          <img src="${v.thumbnail}" alt="${v.title}" loading="lazy">
+        <div class="video-thumb" onclick="playVideo(this, '${esc(v.id)}')">
+          <img src="${esc(v.thumbnail)}" alt="${esc(v.title)}" loading="lazy">
           <div class="video-play-btn">▶</div>
         </div>
         <div class="video-info">
-          <h4 title="${v.title}">${v.title}</h4>
+          <h4 title="${esc(v.title)}">${esc(v.title)}</h4>
           <p>${new Date(v.publishedAt).toLocaleDateString(currentLang === "zh" ? "zh-TW" : "en-US")}</p>
         </div>
       </div>`)

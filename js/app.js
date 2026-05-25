@@ -1,3 +1,20 @@
+// ===== Security Utilities =====
+async function hashPassword(password) {
+  const encoder = new TextEncoder();
+  const data = encoder.encode(password + "_teaching_salt_2026");
+  const hash = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(hash))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+function escapeHtml(str) {
+  if (!str) return "";
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 // ===== State =====
 let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 let users = JSON.parse(localStorage.getItem("users")) || {};
@@ -25,7 +42,7 @@ function showSection(id) {
   document.querySelector(".nav-links")?.classList.remove("open");
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   // Nav clicks
   document.querySelectorAll("[data-section]").forEach((el) => {
     el.addEventListener("click", (e) => {
@@ -42,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Lang toggle
   document.getElementById("langToggle")?.addEventListener("click", toggleLang);
 
-  // Init
-  if (typeof initStudentAccounts === "function") initStudentAccounts();
+  // Init (async for password hashing)
+  if (typeof initStudentAccounts === "function") await initStudentAccounts();
   users = JSON.parse(localStorage.getItem("users")) || {};
   setLang(currentLang);
   updateAuthUI();
@@ -124,7 +141,7 @@ function showChangePwdForm() {
   clearFormErrors();
 }
 
-function doChangePwd() {
+async function doChangePwd() {
   const oldPwd = document.getElementById("changePwdOld").value;
   const newPwd = document.getElementById("changePwdNew").value;
   const confirmPwd = document.getElementById("changePwdConfirm").value;
@@ -139,13 +156,15 @@ function doChangePwd() {
   }
 
   const username = currentUser.username;
-  if (users[username].password !== oldPwd) {
+  const hashedOld = await hashPassword(oldPwd);
+  if (users[username].password !== hashedOld) {
     errEl.style.display = "block";
     errEl.textContent = t("change_pwd_wrong");
     return;
   }
 
-  users[username].password = newPwd;
+  users[username].password = await hashPassword(newPwd);
+  users[username].defaultPwd = false;
   localStorage.setItem("users", JSON.stringify(users));
   closeLoginModal();
   showToast(t("change_pwd_success"), "success");
@@ -155,7 +174,7 @@ function doChangePwd() {
   document.getElementById("changePwdConfirm").value = "";
 }
 
-function doLogin() {
+async function doLogin() {
   const username = document.getElementById("loginUsername").value.trim();
   const password = document.getElementById("loginPassword").value;
 
@@ -164,7 +183,8 @@ function doLogin() {
   // Reload users in case initStudentAccounts updated them
   users = JSON.parse(localStorage.getItem("users")) || {};
 
-  if (users[username] && users[username].password === password) {
+  const hashedInput = await hashPassword(password);
+  if (users[username] && users[username].password === hashedInput) {
     currentUser = { username, role: users[username].role };
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
     closeLoginModal();
@@ -176,7 +196,7 @@ function doLogin() {
   }
 }
 
-function doRegister() {
+async function doRegister() {
   const username = document.getElementById("regUsername").value.trim();
   const password = document.getElementById("regPassword").value;
 
@@ -188,7 +208,8 @@ function doRegister() {
     return;
   }
 
-  users[username] = { password, role: "friend" };
+  const hashedPwd = await hashPassword(password);
+  users[username] = { password: hashedPwd, role: "friend" };
   localStorage.setItem("users", JSON.stringify(users));
   showToast(t("register_success"), "success");
   showLoginForm();
@@ -245,11 +266,11 @@ function renderResources() {
         const desc = currentLang === "zh" ? item.desc_zh : item.desc_en;
         const icon = item.name_zh.includes("程式") || item.name_zh.includes("code") ? "💻" : "PDF";
         list.innerHTML += `
-          <a href="${item.url}" target="_blank" class="resource-item">
+          <a href="${escapeHtml(item.url)}" target="_blank" class="resource-item">
             <div class="resource-icon">${icon}</div>
             <div class="resource-details">
-              <h4>${name}</h4>
-              <p>${desc}</p>
+              <h4>${escapeHtml(name)}</h4>
+              <p>${escapeHtml(desc)}</p>
             </div>
           </a>`;
       });
@@ -543,27 +564,28 @@ function renderAdminStudents() {
 
   tbody.innerHTML = studentList.map((s, i) => {
     const user = users[s.id];
-    const pwdChanged = user && user.password !== s.id;
+    const pwdChanged = user && user.defaultPwd === false;
     const pwdBadge = pwdChanged
       ? `<span class="admin-badge changed">${t("admin_pwd_changed")}</span>`
       : `<span class="admin-badge default">${t("admin_pwd_default")}</span>`;
     return `<tr>
       <td>${i + 1}</td>
-      <td>${s.id}</td>
-      <td>${s.name}</td>
-      <td>${s.courseNames.join(", ")}</td>
+      <td>${escapeHtml(s.id)}</td>
+      <td>${escapeHtml(s.name)}</td>
+      <td>${escapeHtml(s.courseNames.join(", "))}</td>
       <td>${pwdBadge}</td>
-      <td>${pwdChanged ? `<button class="admin-btn" onclick="resetStudentPwd('${s.id}','${s.name}')">${t("admin_reset_pwd")}</button>` : "-"}</td>
+      <td>${pwdChanged ? `<button class="admin-btn" onclick="resetStudentPwd('${escapeHtml(s.id)}','${escapeHtml(s.name)}')">${t("admin_reset_pwd")}</button>` : "-"}</td>
     </tr>`;
   }).join("");
 }
 
-function resetStudentPwd(studentId, studentName) {
+async function resetStudentPwd(studentId, studentName) {
   const msg = t("admin_reset_pwd_confirm").replace("{0}", `${studentName} (${studentId})`);
   if (!confirm(msg)) return;
   users = JSON.parse(localStorage.getItem("users")) || {};
   if (users[studentId]) {
-    users[studentId].password = studentId;
+    users[studentId].password = await hashPassword(studentId);
+    users[studentId].defaultPwd = true;
     localStorage.setItem("users", JSON.stringify(users));
     showToast(t("admin_reset_pwd_success"), "success");
     renderAdminStudents();
@@ -614,10 +636,10 @@ function renderAdminHomework() {
       submissions.forEach((sub) => {
         const scoreVal = sub.graded ? sub.score : "";
         html += `<div class="admin-hw-row">
-          <span class="student-info">${sub.userName}</span>
-          <span class="file-info">📄 ${sub.filename} &nbsp;·&nbsp; ${new Date(sub.date).toLocaleString(currentLang === "zh" ? "zh-TW" : "en-US")}</span>
-          <input type="number" class="grade-input" min="0" max="100" value="${scoreVal}" placeholder="0-100" id="grade-${sub.hwKey}">
-          <button class="admin-btn" onclick="gradeHomework('${sub.hwKey}', document.getElementById('grade-${sub.hwKey}').value)">${t("admin_hw_grade_btn")}</button>
+          <span class="student-info">${escapeHtml(sub.userName)}</span>
+          <span class="file-info">📄 ${escapeHtml(sub.filename)} &nbsp;·&nbsp; ${new Date(sub.date).toLocaleString(currentLang === "zh" ? "zh-TW" : "en-US")}</span>
+          <input type="number" class="grade-input" min="0" max="100" value="${scoreVal}" placeholder="0-100" id="grade-${escapeHtml(sub.hwKey)}">
+          <button class="admin-btn" onclick="gradeHomework('${escapeHtml(sub.hwKey)}', document.getElementById('grade-${escapeHtml(sub.hwKey)}').value)">${t("admin_hw_grade_btn")}</button>
         </div>`;
       });
     }
@@ -671,8 +693,8 @@ function renderAdminQuiz() {
     const name = userRecord?.name || r.userId;
     return `<tr>
       <td>${i + 1}</td>
-      <td>${name}</td>
-      <td>${r.userId}</td>
+      <td>${escapeHtml(name)}</td>
+      <td>${escapeHtml(r.userId)}</td>
       <td><strong>${r.score}%</strong> (${r.correct}/${r.total})</td>
       <td>${new Date(r.date).toLocaleString(currentLang === "zh" ? "zh-TW" : "en-US")}</td>
     </tr>`;
@@ -692,22 +714,22 @@ function renderAdminAccounts() {
 
   tbody.innerHTML = entries.map(([uid, u], i) => {
     const roleBadge = `<span class="admin-badge ${u.role || "friend"}">${u.role === "supervisor" ? "管理員" : u.role === "student" ? t("login_role_student") : t("login_role_friend")}</span>`;
-    // Check if default password
+    // Check if default password using flag
     const isStudent = u.role === "student";
-    const pwdDefault = isStudent && u.password === uid;
+    const pwdDefault = isStudent && u.defaultPwd !== false;
     const pwdBadge = isStudent
       ? (pwdDefault
         ? `<span class="admin-badge default">${t("admin_pwd_default")}</span>`
         : `<span class="admin-badge changed">${t("admin_pwd_changed")}</span>`)
       : "-";
     const resetBtn = isStudent && !pwdDefault
-      ? `<button class="admin-btn" onclick="resetStudentPwd('${uid}','${u.name || uid}')">${t("admin_reset_pwd")}</button>`
+      ? `<button class="admin-btn" onclick="resetStudentPwd('${escapeHtml(uid)}','${escapeHtml(u.name || uid)}')">${t("admin_reset_pwd")}</button>`
       : "-";
 
     return `<tr>
       <td>${i + 1}</td>
-      <td>${uid}</td>
-      <td>${u.name || "-"}</td>
+      <td>${escapeHtml(uid)}</td>
+      <td>${escapeHtml(u.name || "-")}</td>
       <td>${roleBadge}</td>
       <td>${pwdBadge}</td>
       <td>${resetBtn}</td>
