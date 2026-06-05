@@ -151,8 +151,9 @@
         <p style="font-size:0.82rem;color:var(--text-light);">YouTube</p>
       </div>
     </div>
-    <a href="https://www.youtube.com/channel/UCWvAFNxvB59MLKITHHxx8jg" target="_blank"
-       class="btn btn-primary" style="font-size:0.85rem;" data-i18n="videos_channel_btn">訂閱頻道</a>
+    <a href="https://www.youtube.com/channel/UCWvAFNxvB59MLKITHHxx8jg" target="_blank" rel="noopener noreferrer"
+       class="btn btn-primary" style="font-size:0.85rem;text-decoration:none;" data-i18n="videos_channel_btn"
+       onclick="window.open(this.href,'_blank');return false;">訂閱頻道</a>
   </div>
 
   <div class="video-filter-bar" id="videoFilters"></div>
