@@ -67,7 +67,7 @@ const courseCategories = {
   },
   emba: {
     zh: "EMBA — AI 時代的企業決策與智慧製造：從機器視覺到生成式 AI",
-    en: "EMBA — AI-Driven Business Decisions & Smart Manufacturing",
+    en: "EMBA — AI-Driven Business Decisions & Smart Manufacturing: From Machine Vision to Generative AI",
     icon: "🏢",
     keywords: [
       "EMBA", "企業決策", "智慧製造",
