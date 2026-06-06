@@ -65,6 +65,7 @@ const translations = {
     res_cat_ai: "人工智慧",
     res_cat_dl: "深度學習",
     res_cat_agent: "AI Agent",
+    res_cat_emba: "EMBA — 企業決策與智慧製造",
 
     // Quiz
     quiz_title: "測驗系統",
@@ -223,6 +224,7 @@ const translations = {
     res_cat_ai: "Artificial Intelligence",
     res_cat_dl: "Deep Learning",
     res_cat_agent: "AI Agent",
+    res_cat_emba: "EMBA — Business Decisions & Smart Manufacturing",
 
     quiz_title: "Quiz System",
     quiz_desc: "Select a course and take an online quiz to test your knowledge.",

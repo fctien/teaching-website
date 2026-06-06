@@ -522,6 +522,20 @@ const resourceData = [
       { name_zh: "Lecture 3 - 用 Claude Code 建立教學網站", name_en: "Lecture 3 - Building Teaching Website with Claude Code", url: "https://drive.google.com/drive/folders/1M245Peyx5COjAA1PVNkGRROTLKa6sP1L", desc_zh: "PDF｜使用 Claude Code 建立教學網站實作", desc_en: "PDF | Building a Teaching Website with Claude Code" },
     ],
   },
+  {
+    category: "res_cat_emba",
+    folderUrl: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo?usp=sharing",
+    folderId: "1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo",
+    items: [
+      { name_zh: "EMBA 課程大綱", name_en: "EMBA Course Syllabus", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜課程架構、時間表與學習目標", desc_en: "PDF | Course Structure, Schedule & Learning Objectives" },
+      { name_zh: "AI 簡介 2026", name_en: "AI Introduction 2026", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜AI / ML / DL 基礎概念", desc_en: "PDF | AI / ML / DL Fundamentals" },
+      { name_zh: "機器視覺（首頁）", name_en: "Machine Vision (Overview)", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜機器視覺與 AOI 檢測技術", desc_en: "PDF | Machine Vision & AOI Inspection" },
+      { name_zh: "AI Agent 簡介", name_en: "AI Agent Introduction", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜AI Agent 概念與應用", desc_en: "PDF | AI Agent Concepts & Applications" },
+      { name_zh: "AI 革命 — AI Revolution 2026", name_en: "AI Revolution 2026", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜AI 革命與產業衝擊", desc_en: "PDF | AI Revolution & Industry Impact" },
+      { name_zh: "AI 讓台灣賺翻了，但？", name_en: "AI Made Taiwan Rich, But?", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜台灣 AI 產業與經濟分析（經濟學人）", desc_en: "PDF | Taiwan AI Industry & Economic Analysis (Economist)" },
+      { name_zh: "爭鮮案 — Case Study", name_en: "Sushi Chain Case Study", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜機器視覺與 AOI 營運改善案例", desc_en: "PDF | Machine Vision & AOI Operations Improvement Case" },
+    ],
+  },
 ];
 
 const sampleVideos = [

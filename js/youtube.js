@@ -65,6 +65,16 @@ const courseCategories = {
       "AI Agent", "Introduction to AI Agent",
     ],
   },
+  emba: {
+    zh: "EMBA — 企業決策與智慧製造",
+    en: "EMBA — Business Decisions & Smart Manufacturing",
+    icon: "🏢",
+    keywords: [
+      "EMBA", "企業決策", "智慧製造",
+      "AI War", "AI Revolution", "AI 革命",
+      "爭鮮", "台灣現狀", "經濟學人",
+    ],
+  },
   other: {
     zh: "其他課程",
     en: "Other Courses",
@@ -81,7 +91,7 @@ let allVideos = [];
 let videosLoaded = false;
 
 function categorizeVideo(title) {
-  const cats = ["vision", "aiagent", "python", "deeplearning", "other"];
+  const cats = ["vision", "aiagent", "emba", "python", "deeplearning", "other"];
   for (const cat of cats) {
     for (const kw of courseCategories[cat].keywords) {
       if (title.includes(kw)) return cat;
