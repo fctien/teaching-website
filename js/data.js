@@ -223,6 +223,62 @@ const quizData = {
       },
     ],
   },
+  course5: {
+    zh: [
+      {
+        q: "AI War 中，台灣在全球 AI 產業鏈中主要扮演什麼角色？",
+        options: ["AI 軟體創新者", "AI 硬體提供者（半導體）", "AI 資料供應商", "AI 終端消費市場"],
+        answer: 1,
+      },
+      {
+        q: "AOI（自動光學檢測）在智慧製造中的主要用途是？",
+        options: ["產品包裝設計", "生產線品質檢測與瑕疵辨識", "員工績效評估", "財務報表分析"],
+        answer: 1,
+      },
+      {
+        q: "生成式 AI（如 ChatGPT）對企業管理最大的影響是？",
+        options: ["取代所有人力", "提升決策效率與內容產出能力", "僅適用於科技業", "降低企業營收"],
+        answer: 1,
+      },
+      {
+        q: "下列何者最能描述台灣 2025 年經濟成長的主要驅動力？",
+        options: ["觀光旅遊業", "農業出口", "AI 與半導體產業", "房地產市場"],
+        answer: 2,
+      },
+      {
+        q: "管理者導入 AI 時，最重要的決策考量是什麼？",
+        options: ["追求最新技術", "評估投資報酬率與風險", "完全取代人力", "僅關注成本節省"],
+        answer: 1,
+      },
+    ],
+    en: [
+      {
+        q: "In the AI War, what role does Taiwan primarily play in the global AI supply chain?",
+        options: ["AI software innovator", "AI hardware provider (semiconductors)", "AI data supplier", "AI end-consumer market"],
+        answer: 1,
+      },
+      {
+        q: "What is the main purpose of AOI (Automated Optical Inspection) in smart manufacturing?",
+        options: ["Product packaging design", "Production line quality inspection & defect detection", "Employee performance evaluation", "Financial report analysis"],
+        answer: 1,
+      },
+      {
+        q: "What is the biggest impact of Generative AI (e.g., ChatGPT) on business management?",
+        options: ["Replacing all human labor", "Improving decision efficiency and content generation", "Only applicable to tech industry", "Reducing company revenue"],
+        answer: 1,
+      },
+      {
+        q: "Which best describes the main driver of Taiwan's 2025 economic growth?",
+        options: ["Tourism industry", "Agricultural exports", "AI and semiconductor industry", "Real estate market"],
+        answer: 2,
+      },
+      {
+        q: "What is the most important consideration when managers adopt AI?",
+        options: ["Pursuing the latest technology", "Evaluating ROI and risk", "Completely replacing human workers", "Focusing only on cost savings"],
+        answer: 1,
+      },
+    ],
+  },
 };
 
 const homeworkData = {
@@ -355,6 +411,36 @@ const homeworkData = {
         title: "HW2: AI Agent Application",
         desc: "Build an AI Agent with tool-use capabilities using LangChain or Claude Agent SDK. Must call at least 2 external tools to complete assigned tasks.",
         due: "2026-06-28",
+      },
+    ],
+  },
+  course5: {
+    zh: [
+      {
+        id: "hw5-1",
+        title: "作業一：爭鮮案例分析",
+        desc: "分析壽司店現況與痛點，比較視覺監控、條碼、RFID、顏色管理等方案，提出可落地的改善方法，包含優缺點與導入限制。每組 20 分鐘簡報 + Q&A。",
+        due: "2026-07-10",
+      },
+      {
+        id: "hw5-2",
+        title: "作業二：中美科技發展比較",
+        desc: "比較中美 AI 科技發展路徑與競爭優勢，聚焦人才、算力、市場、資金、數據與半導體等面向。討論台灣產業定位、企業機會與潛在風險。每組 20 分鐘簡報 + Q&A。",
+        due: "2026-07-24",
+      },
+    ],
+    en: [
+      {
+        id: "hw5-1",
+        title: "HW1: Sushi Chain Case Study",
+        desc: "Analyze current operations and pain points of a sushi restaurant chain. Compare visual monitoring, barcodes, RFID, and color management solutions. Propose implementable improvements with pros, cons, and adoption constraints. 20-min group presentation + Q&A.",
+        due: "2026-07-10",
+      },
+      {
+        id: "hw5-2",
+        title: "HW2: US-China Tech Development Comparison",
+        desc: "Compare US-China AI technology development paths and competitive advantages, focusing on talent, computing power, markets, funding, data, and semiconductors. Discuss Taiwan's industry positioning, opportunities, and risks. 20-min group presentation + Q&A.",
+        due: "2026-07-24",
       },
     ],
   },
