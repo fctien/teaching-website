@@ -67,6 +67,20 @@ const translations = {
     res_cat_agent: "AI Agent",
     res_cat_emba: "EMBA — 企業決策與智慧製造",
 
+    // Apps
+    nav_apps: "App 下載",
+    apps_title: "App 下載",
+    apps_desc: "下載由 iVi Lab 開發的 AI 應用程式，可直接在 Windows 上執行，無需安裝 Python 環境。",
+    apps_drive_title: "Google Drive — App 下載資料夾",
+    apps_drive_sub: "所有應用程式皆存放於 Google Drive",
+    apps_drive_btn: "開啟資料夾",
+    apps_download: "下載",
+    apps_github: "GitHub 原始碼",
+    apps_size: "檔案大小",
+    apps_format: "格式",
+    apps_note_title: "使用說明",
+    apps_note_text: "下載 .rar 檔案後，使用 7-Zip 或 WinRAR 解壓縮，直接執行 .exe 檔案即可。所有 App 皆為獨立執行檔，無需安裝 Python 環境。",
+
     // Quiz
     quiz_title: "測驗系統",
     quiz_desc: "選擇課程進行線上測驗，測試您的學習成果。",
@@ -225,6 +239,20 @@ const translations = {
     res_cat_dl: "Deep Learning",
     res_cat_agent: "AI Agent",
     res_cat_emba: "EMBA — Business Decisions & Smart Manufacturing",
+
+    // Apps
+    nav_apps: "Apps",
+    apps_title: "App Downloads",
+    apps_desc: "Download AI applications developed by iVi Lab. Run directly on Windows without Python installation.",
+    apps_drive_title: "Google Drive — App Download Folder",
+    apps_drive_sub: "All applications are hosted on Google Drive",
+    apps_drive_btn: "Open Folder",
+    apps_download: "Download",
+    apps_github: "GitHub Source",
+    apps_size: "File Size",
+    apps_format: "Format",
+    apps_note_title: "Instructions",
+    apps_note_text: "After downloading the .rar file, extract it with 7-Zip or WinRAR, then run the .exe file directly. All apps are standalone executables — no Python installation required.",
 
     quiz_title: "Quiz System",
     quiz_desc: "Select a course and take an online quiz to test your knowledge.",

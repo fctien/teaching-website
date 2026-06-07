@@ -27,6 +27,7 @@
     <li><a href="#" data-section="courses" data-i18n="nav_courses">課程</a></li>
     <li><a href="#" data-section="videos" data-i18n="nav_videos">教學影片</a></li>
     <li><a href="#" data-section="resources" data-i18n="nav_resources">教學資源</a></li>
+    <li><a href="#" data-section="apps" data-i18n="nav_apps">App 下載</a></li>
     <li><a href="#" data-section="quiz" data-i18n="nav_quiz">測驗系統</a></li>
     <li><a href="#" data-section="homework" data-i18n="nav_homework">作業系統</a></li>
     <li id="navAdminItem" style="display:none;"><a href="#" data-section="admin" data-i18n="nav_admin" style="color:var(--accent);font-weight:700;">管理後台</a></li>
@@ -186,6 +187,32 @@
   </div>
 
   <div class="protected-content" style="display:none;" id="resourceList"></div>
+</section>
+
+<!-- ===== App Downloads ===== -->
+<section id="apps" class="section">
+  <h2 class="section-title" data-i18n="apps_title">App 下載</h2>
+  <p class="section-desc" data-i18n="apps_desc">下載由 iVi Lab 開發的 AI 應用程式，可直接在 Windows 上執行，無需安裝 Python 環境。</p>
+
+  <div class="app-drive-bar">
+    <div class="channel-info">
+      <div class="channel-avatar" style="background:var(--success);">📁</div>
+      <div>
+        <strong data-i18n="apps_drive_title">Google Drive — App 下載資料夾</strong>
+        <p style="font-size:0.82rem;color:var(--text-light);" data-i18n="apps_drive_sub">所有應用程式皆存放於 Google Drive</p>
+      </div>
+    </div>
+    <a href="https://drive.google.com/drive/folders/1UBRajmOjSuNqaWRrR7oFUJSiTojA-PCM?usp=sharing" target="_blank" rel="noopener noreferrer"
+       class="btn btn-primary" style="font-size:0.85rem;text-decoration:none;" data-i18n="apps_drive_btn"
+       onclick="window.open(this.href,'_blank');return false;">開啟資料夾</a>
+  </div>
+
+  <div class="app-grid" id="appGrid"></div>
+
+  <div class="app-note" style="margin-top:2rem;padding:1.2rem 1.5rem;background:var(--primary-lighter);border-radius:var(--radius);border-left:4px solid var(--primary);">
+    <p style="font-size:0.9rem;color:var(--text);"><strong>💡 <span data-i18n="apps_note_title">使用說明</span>：</strong>
+    <span data-i18n="apps_note_text">下載 .rar 檔案後，使用 7-Zip 或 WinRAR 解壓縮，直接執行 .exe 檔案即可。所有 App 皆為獨立執行檔，無需安裝 Python 環境。</span></p>
+  </div>
 </section>
 
 <!-- ===== Quiz ===== -->
@@ -480,6 +507,7 @@
     renderCourseTopics();
     renderResearchTags();
     renderResources();
+    renderApps();
     renderVideoFilters();
     initVideos();
   });

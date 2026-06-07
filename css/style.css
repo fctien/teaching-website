@@ -672,6 +672,157 @@ img {
   color: var(--text-light);
 }
 
+/* ===== App Downloads ===== */
+.app-drive-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1.2rem 1.5rem;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.5rem;
+}
+
+.app-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: all var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
+}
+
+.app-card-header {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-card-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.app-card-header h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.app-card-header .app-format-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.2);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
+}
+
+.app-card-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-card-body p {
+  color: var(--text-light);
+  font-size: 0.92rem;
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.app-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.app-tag {
+  background: var(--primary-lighter);
+  color: var(--primary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.app-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+}
+
+.app-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.app-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.app-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all var(--transition);
+  cursor: pointer;
+  border: none;
+}
+
+.app-btn-download {
+  background: var(--accent);
+  color: #fff;
+}
+
+.app-btn-download:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+  color: #fff;
+}
+
+.app-btn-github {
+  background: #24292e;
+  color: #fff;
+}
+
+.app-btn-github:hover {
+  background: #444d56;
+  transform: translateY(-2px);
+  color: #fff;
+}
+
 /* ===== Quiz ===== */
 .quiz-container {
   max-width: 750px;
@@ -1147,7 +1298,7 @@ img {
     margin: 0 auto;
   }
 
-  .course-grid, .video-grid, .resource-list {
+  .course-grid, .video-grid, .resource-list, .app-grid {
     grid-template-columns: 1fr;
   }
 

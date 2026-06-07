@@ -538,6 +538,48 @@ const resourceData = [
   },
 ];
 
+const appData = [
+  {
+    id: "yolo26",
+    name: "YOLO26",
+    icon: "🎯",
+    desc_zh: "最新一代 YOLO 物件偵測應用程式，支援即時影像偵測、模型訓練與推論。適用於工業檢測、物件計數等場景。",
+    desc_en: "Latest generation YOLO object detection application. Supports real-time image detection, model training and inference. Ideal for industrial inspection and object counting.",
+    size: "1.89 GB",
+    format: "RAR",
+    github: "https://github.com/ultralytics/ultralytics",
+    driveUrl: "https://drive.google.com/drive/folders/1UBRajmOjSuNqaWRrR7oFUJSiTojA-PCM?usp=sharing",
+    tags_zh: ["物件偵測", "即時推論", "YOLO"],
+    tags_en: ["Object Detection", "Real-time Inference", "YOLO"],
+  },
+  {
+    id: "yolo11",
+    name: "YOLO11",
+    icon: "📦",
+    desc_zh: "YOLOv11 物件偵測應用程式，支援多種模型架構與推論模式。提供完整 GUI 介面進行訓練與預測。",
+    desc_en: "YOLOv11 object detection application with multiple model architectures and inference modes. Full GUI interface for training and prediction.",
+    size: "2.07 GB",
+    format: "RAR",
+    github: "https://github.com/ultralytics/ultralytics",
+    driveUrl: "https://drive.google.com/drive/folders/1UBRajmOjSuNqaWRrR7oFUJSiTojA-PCM?usp=sharing",
+    tags_zh: ["物件偵測", "GUI 介面", "YOLOv11"],
+    tags_en: ["Object Detection", "GUI Interface", "YOLOv11"],
+  },
+  {
+    id: "efficientad",
+    name: "EfficientAD",
+    icon: "🔍",
+    desc_zh: "輕量級異常偵測應用程式，基於 EfficientAD 模型。支援工業瑕疵檢測，提供 Heatmap 視覺化與模型訓練功能。",
+    desc_en: "Lightweight anomaly detection application based on EfficientAD model. Supports industrial defect detection with Heatmap visualization and model training.",
+    size: "4.07 GB",
+    format: "RAR",
+    github: "https://github.com/nelson1425/EfficientAD",
+    driveUrl: "https://drive.google.com/drive/folders/1UBRajmOjSuNqaWRrR7oFUJSiTojA-PCM?usp=sharing",
+    tags_zh: ["異常偵測", "瑕疵檢測", "Heatmap"],
+    tags_en: ["Anomaly Detection", "Defect Detection", "Heatmap"],
+  },
+];
+
 const sampleVideos = [
   { id: "dQw4w9WgXcQ", title_zh: "課程介紹", title_en: "Course Introduction" },
   { id: "dQw4w9WgXcQ", title_zh: "Python 基礎教學", title_en: "Python Basics" },

@@ -289,6 +289,46 @@ function renderResources() {
   });
 }
 
+// ===== App Downloads =====
+function renderApps() {
+  const grid = document.getElementById("appGrid");
+  if (!grid) return;
+
+  const esc = escapeHtml;
+  grid.innerHTML = appData
+    .map((app) => {
+      const desc = currentLang === "zh" ? app.desc_zh : app.desc_en;
+      const tags = currentLang === "zh" ? app.tags_zh : app.tags_en;
+      return `
+      <div class="app-card">
+        <div class="app-card-header">
+          <div class="app-card-icon">${app.icon}</div>
+          <div>
+            <h3>${esc(app.name)}</h3>
+            <span class="app-format-badge">${esc(app.format)} — ${esc(app.size)}</span>
+          </div>
+        </div>
+        <div class="app-card-body">
+          <p>${esc(desc)}</p>
+          <div class="app-tags">
+            ${tags.map((tag) => `<span class="app-tag">${esc(tag)}</span>`).join("")}
+          </div>
+          <div class="app-actions">
+            <a href="${esc(app.driveUrl)}" target="_blank" class="app-btn app-btn-download"
+               onclick="window.open(this.href,'_blank');return false;">
+              ⬇ ${t("apps_download")}
+            </a>
+            <a href="${esc(app.github)}" target="_blank" class="app-btn app-btn-github"
+               onclick="window.open(this.href,'_blank');return false;">
+              ⚙ ${t("apps_github")}
+            </a>
+          </div>
+        </div>
+      </div>`;
+    })
+    .join("");
+}
+
 // ===== Videos =====
 // Videos now handled by youtube.js
 
@@ -475,6 +515,7 @@ function uploadHW(hwId, input) {
 // ===== Language Change Callback =====
 function onLanguageChange() {
   renderResources();
+  renderApps();
   renderVideoFilters();
   renderVideoGrid();
   renderHomework();
