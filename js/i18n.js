@@ -174,6 +174,7 @@ const translations = {
 
     // Footer
     footer_text: "© 2026 FC Tien 教授 ｜ 國立臺北科技大學 工業工程與管理系 ｜ 智慧視覺檢測實驗室",
+    footer_thesis: "論文格式校正工具",
     footer_contact: "聯絡資訊",
     footer_links: "快速連結",
   },
@@ -343,6 +344,7 @@ const translations = {
     admin_all_courses: "All Courses",
 
     footer_text: "© 2026 Prof. FC Tien | NTUT Dept. of IE&M | iVi Lab",
+    footer_thesis: "Thesis Format Corrector",
     footer_contact: "Contact",
     footer_links: "Quick Links",
   },
