@@ -1,3 +1,7 @@
 # OS files
 .DS_Store
 Thumbs.db
+
+# Build tools
+node_modules/
+generate_students_xlsx.js
