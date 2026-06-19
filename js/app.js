@@ -199,10 +199,11 @@ async function doLogin() {
 }
 
 async function doRegister() {
+  const name = document.getElementById("regName").value.trim();
   const username = document.getElementById("regUsername").value.trim();
   const password = document.getElementById("regPassword").value;
 
-  if (!username || !password) return;
+  if (!name || !username || !password) return;
 
   if (users[username]) {
     document.getElementById("regError").style.display = "block";
@@ -211,7 +212,7 @@ async function doRegister() {
   }
 
   const hashedPwd = await hashPassword(password);
-  users[username] = { password: hashedPwd, role: "friend" };
+  users[username] = { password: hashedPwd, role: "friend", name: name };
   localStorage.setItem("users", JSON.stringify(users));
   showToast(t("register_success"), "success");
   showLoginForm();
@@ -750,6 +751,40 @@ function renderAdminQuiz() {
 }
 
 // --- Account Management ---
+function exportStudentsExcel() {
+  users = JSON.parse(localStorage.getItem("users")) || {};
+  const header = ["課程 (Course)", "學號 (Student No)", "姓名 (Name)", "暱稱 (Nickname)", "密碼 (Password)"];
+  const rows = [];
+
+  // Add students from roster first
+  for (const courseKey of Object.keys(studentRoster)) {
+    for (const s of studentRoster[courseKey].students) {
+      rows.push([courseKey, s.id, s.name, s.nickname || "", s.password || s.id]);
+    }
+  }
+
+  // Add registered visitors (not in roster)
+  const rosterIds = new Set();
+  for (const courseKey of Object.keys(studentRoster)) {
+    for (const s of studentRoster[courseKey].students) {
+      rosterIds.add(s.id);
+    }
+  }
+  for (const [uid, u] of Object.entries(users)) {
+    if (uid === "fctien") continue;
+    if (rosterIds.has(uid)) continue;
+    const role = u.role === "friend" ? "visitor" : u.role || "visitor";
+    rows.push([role, uid, u.name || "", "", ""]);
+  }
+
+  const ws = XLSX.utils.aoa_to_sheet([header, ...rows]);
+  ws["!cols"] = [{ wch: 18 }, { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 15 }];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Students");
+  XLSX.writeFile(wb, "students.xlsx");
+  showToast(currentLang === "zh" ? "名冊已匯出！" : "Roster exported!", "success");
+}
+
 function renderAdminAccounts() {
   const tbody = document.getElementById("adminAccountBody");
   if (!tbody) return;
