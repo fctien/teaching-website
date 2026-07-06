@@ -65,7 +65,7 @@ const translations = {
     res_cat_ai: "人工智慧",
     res_cat_dl: "深度學習",
     res_cat_agent: "AI Agent",
-    res_cat_emba: "EMBA — 企業決策與智慧製造",
+    res_cat_emba: "EMBA — 企業決策與智慧製造 / 精實管理與數位轉型 / 決策與大數據分析",
 
     // Apps
     nav_apps: "App 下載",
@@ -242,7 +242,7 @@ const translations = {
     res_cat_ai: "Artificial Intelligence",
     res_cat_dl: "Deep Learning",
     res_cat_agent: "AI Agent",
-    res_cat_emba: "EMBA — Business Decisions & Smart Manufacturing",
+    res_cat_emba: "EMBA — Business Decisions & Smart Manufacturing / Lean Management & Digital Transformation / Decision Making & Big Data Analytics",
 
     // Apps
     nav_apps: "Apps",
