@@ -6,7 +6,7 @@ let studentRoster = {};
 
 async function loadStudentRoster() {
   try {
-    const res = await fetch("data/students.xlsx");
+    const res = await fetch("data/students.xlsx?v=20260706");
     const buf = await res.arrayBuffer();
     const wb = XLSX.read(buf, { type: "array" });
     const ws = wb.Sheets[wb.SheetNames[0]];
