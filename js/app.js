@@ -241,20 +241,40 @@ function showToast(msg, type = "success") {
 }
 
 // ===== Resources =====
-function renderResources() {
+async function fetchDriveFiles(folderId) {
+  const cacheKey = `drive_files_${folderId}`;
+  const cached = localStorage.getItem(cacheKey);
+  if (cached) {
+    const { files, ts } = JSON.parse(cached);
+    if (Date.now() - ts < 3600000) return files;
+  }
+  const url = `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+trashed=false&fields=files(id,name,mimeType)&key=${YT_API_KEY}&pageSize=100`;
+  const res = await fetch(url);
+  if (!res.ok) return null;
+  const data = await res.json();
+  const files = (data.files || [])
+    .filter(f => f.mimeType === "application/pdf" || f.name.endsWith(".pdf"))
+    .map(f => ({
+      name: f.name.replace(/\.pdf$/i, ""),
+      url: `https://drive.google.com/file/d/${f.id}/view`,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name, "zh-Hant"));
+  localStorage.setItem(cacheKey, JSON.stringify({ files, ts: Date.now() }));
+  return files;
+}
+
+async function renderResources() {
   const container = document.getElementById("resourceList");
   if (!container) return;
   container.innerHTML = "";
 
-  resourceData.forEach((cat) => {
-    // Skip empty categories
-    if (cat.items.length === 0 && !cat.folderUrl) return;
+  for (const cat of resourceData) {
+    if (cat.items.length === 0 && !cat.folderUrl && !cat.autoDrive) continue;
 
     const catDiv = document.createElement("div");
     catDiv.className = "resource-category";
     catDiv.innerHTML = `<h3>${t(cat.category)}</h3>`;
 
-    // Folder link button
     if (cat.folderUrl) {
       const folderBtn = document.createElement("div");
       folderBtn.style.cssText = "margin-bottom:1rem;";
@@ -265,10 +285,30 @@ function renderResources() {
       catDiv.appendChild(folderBtn);
     }
 
-    if (cat.items.length > 0) {
-      const list = document.createElement("div");
-      list.className = "resource-list";
+    const list = document.createElement("div");
+    list.className = "resource-list";
 
+    if (cat.autoDrive && cat.folderId) {
+      list.innerHTML = `<p style="color:var(--text-muted);padding:0.5rem;">${currentLang === "zh" ? "載入中..." : "Loading..."}</p>`;
+      catDiv.appendChild(list);
+      container.appendChild(catDiv);
+      const files = await fetchDriveFiles(cat.folderId);
+      list.innerHTML = "";
+      if (files && files.length > 0) {
+        files.forEach(f => {
+          list.innerHTML += `
+            <a href="${escapeHtml(f.url)}" target="_blank" class="resource-item">
+              <div class="resource-icon">PDF</div>
+              <div class="resource-details">
+                <h4>${escapeHtml(f.name)}</h4>
+                <p>PDF</p>
+              </div>
+            </a>`;
+        });
+      } else {
+        list.innerHTML = `<p style="color:var(--text-muted);padding:0.5rem;">${currentLang === "zh" ? "無法載入，請點擊上方連結開啟 Google Drive" : "Could not load. Please click the link above to open Google Drive."}</p>`;
+      }
+    } else if (cat.items.length > 0) {
       cat.items.forEach((item) => {
         const name = currentLang === "zh" ? item.name_zh : item.name_en;
         const desc = currentLang === "zh" ? item.desc_zh : item.desc_en;
@@ -282,12 +322,10 @@ function renderResources() {
             </div>
           </a>`;
       });
-
       catDiv.appendChild(list);
+      container.appendChild(catDiv);
     }
-
-    container.appendChild(catDiv);
-  });
+  }
 }
 
 // ===== App Downloads =====
