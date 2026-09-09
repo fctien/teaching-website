@@ -75,6 +75,15 @@ const courseCategories = {
       "爭鮮", "台灣現狀", "經濟學人",
     ],
   },
+  pl: {
+    zh: "2026 -人工智慧導論與程式語言",
+    en: "2026 - Introduction to AI & Programming Language",
+    icon: "💻",
+    keywords: [
+      "程式語言", "Programming Language",
+      "Vibe Coding", "MVC 小計算機",
+    ],
+  },
   other: {
     zh: "其他課程",
     en: "Other Courses",
@@ -91,7 +100,7 @@ let allVideos = [];
 let videosLoaded = false;
 
 function categorizeVideo(title) {
-  const cats = ["vision", "aiagent", "emba", "python", "deeplearning", "other"];
+  const cats = ["vision", "aiagent", "emba", "pl", "python", "deeplearning", "other"];
   for (const cat of cats) {
     for (const kw of courseCategories[cat].keywords) {
       if (title.includes(kw)) return cat;

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>實驗紀錄：新增 course7 與停用訪客註冊</title>
+<style>
+body { font-family: "Segoe UI", sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.6; color: #1a202c; }
+h1 { border-bottom: 2px solid #2b6cb0; padding-bottom: 0.5rem; }
+h2 { color: #2b6cb0; margin-top: 2rem; }
+h3 { color: #2c5282; }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { border: 1px solid #cbd5e0; padding: 0.5rem 0.75rem; text-align: left; }
+th { background: #ebf4ff; }
+code { background: #edf2f7; padding: 0.15rem 0.4rem; border-radius: 3px; font-size: 0.9em; }
+pre { background: #2d3748; color: #e2e8f0; padding: 1rem; border-radius: 6px; overflow-x: auto; }
+.tag { display: inline-block; background: #bee3f8; color: #2a4365; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.85em; margin-right: 0.3rem; }
+.success { color: #276749; font-weight: bold; }
+.section { background: #f7fafc; border-left: 4px solid #3182ce; padding: 0.75rem 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+
+<h1>實驗紀錄：新增 course7 與停用訪客註冊</h1>
+
+<table>
+<tr><th>日期</th><td>2026-09-09</td></tr>
+<tr><th>基準 Commit</th><td><code>d12e3b7</code> — Update AI Agent materials (12 items) and restore static resource lists</td></tr>
+<tr><th>作者</th><td>Claude Code（協助 FC Tien 教授）</td></tr>
+</table>
+
+<h2>1. 變更總覽</h2>
+
+<div class="section">
+<strong>本次包含兩項獨立變更：</strong>
+<ol>
+<li>停用訪客註冊功能（臨時措施）</li>
+<li>新增 course7「2026 人工智慧簡介及程式語言」</li>
+</ol>
+</div>
+
+<h2>2. 停用訪客註冊</h2>
+
+<h3>2.1 修改內容</h3>
+<table>
+<tr><th>檔案</th><th>變更</th></tr>
+<tr><td><code>index.html</code></td><td>註解掉訪客註冊連結 <code>&lt;!-- 訪客註冊暫時停用 --&gt;</code></td></tr>
+<tr><td><code>js/app.js</code></td><td><code>doRegister()</code> 函式加入 early return，顯示停用 toast 訊息</td></tr>
+</table>
+
+<h3>2.2 安全考量</h3>
+<p>採雙重保護：UI 層隱藏入口 + 後端邏輯阻擋，即使透過 DevTools 呼叫 <code>doRegister()</code> 也會被攔截。</p>
+
+<h2>3. 新增 course7「2026 人工智慧簡介及程式語言」</h2>
+
+<h3>3.1 課程資訊</h3>
+<table>
+<tr><th>項目</th><th>內容</th></tr>
+<tr><td>課程名稱（中）</td><td>2026 人工智慧簡介及程式語言</td></tr>
+<tr><td>課程名稱（英）</td><td>2026 Introduction to AI & Programming Language</td></tr>
+<tr><td>圖示</td><td>🐍</td></tr>
+<tr><td>教學影片</td><td>尚無</td></tr>
+<tr><td>作業模式</td><td>Download-only（與 course6 相同）</td></tr>
+</table>
+
+<h3>3.2 修改檔案</h3>
+<table>
+<tr><th>檔案</th><th>變更說明</th></tr>
+<tr><td><code>js/i18n.js</code></td><td>新增 course7 中英文翻譯（title, desc, topics）與資源分類 <code>res_cat_pl2</code></td></tr>
+<tr><td><code>js/data.js</code></td><td>
+  <ul>
+    <li>quizData.course7：10 題測驗（中英文）</li>
+    <li>homeworkData.course7：16 週作業（download-only）</li>
+    <li>resourceData：新增 <code>res_cat_pl2</code> 分類，含 3 個 Google Drive 連結</li>
+  </ul>
+</td></tr>
+<tr><td><code>js/quiz-key.js</code></td><td>重新產生含 course7 答案的 XOR+base64 編碼金鑰</td></tr>
+<tr><td><code>index.html</code></td><td>
+  <ul>
+    <li>新增 course7 課程卡（🐍 圖示）</li>
+    <li>新增 course7 測驗按鈕</li>
+    <li>作業選單加入 course7 選項</li>
+    <li>管理後台 3 個下拉選單加入 course7</li>
+  </ul>
+</td></tr>
+<tr><td><code>js/app.js</code></td><td>Download-only 判斷加入 <code>course7</code></td></tr>
+</table>
+
+<h3>3.3 Google Drive 資源連結</h3>
+<table>
+<tr><th>資源</th><th>連結</th></tr>
+<tr><td>📖 教材投影片</td><td><a href="https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP">Google Drive</a></td></tr>
+<tr><td>💻 PPT 程式範例</td><td><a href="https://drive.google.com/drive/folders/1jZ0m5DZQ2tPl7rwTWBjsezMXcul3kKqm">Google Drive</a></td></tr>
+<tr><td>📝 每週作業</td><td><a href="https://drive.google.com/drive/folders/1To3GNKdfZ4DYrsv5JedZeOfdZbK-4pjF">Google Drive</a></td></tr>
+</table>
+
+<h3>3.4 測驗答案</h3>
+<p>10 題，答案：<code>[1, 2, 2, 1, 1, 1, 1, 1, 2, 1]</code>（已 XOR+base64 編碼存於 <code>quiz-key.js</code>）</p>
+
+<h2>4. 驗證結果</h2>
+
+<table>
+<tr><th>檢查項目</th><th>結果</th></tr>
+<tr><td>Console 錯誤</td><td class="success">✅ 無錯誤</td></tr>
+<tr><td>課程卡顯示</td><td class="success">✅ 7 張卡片皆在 DOM 中正確渲染</td></tr>
+<tr><td>i18n 翻譯</td><td class="success">✅ 中英文切換正常</td></tr>
+<tr><td>測驗區 course7 按鈕</td><td class="success">✅ 存在於頁面</td></tr>
+<tr><td>作業區 course7 選項</td><td class="success">✅ 出現在下拉選單</td></tr>
+<tr><td>資源區 res_cat_pl2</td><td class="success">✅ 3 個 Google Drive 連結正確</td></tr>
+<tr><td>管理後台下拉選單</td><td class="success">✅ course7 出現在 3 個管理選單中</td></tr>
+<tr><td>訪客註冊停用</td><td class="success">✅ UI 隱藏 + 函式攔截</td></tr>
+</table>
+
+<h2>5. 備註</h2>
+<ul>
+<li>course7 目前無教學影片，日後可在 YouTube 區新增</li>
+<li>作業採 download-only 模式，每週提供 Google Drive 下載按鈕</li>
+<li>訪客註冊為臨時停用，日後可恢復（取消 HTML 註解 + 移除 app.js 的 early return）</li>
+</ul>
+
+</body>
+</html>

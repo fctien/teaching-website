@@ -4,54 +4,54 @@ const quizData = {
       {
         q: "下列何者不是機器視覺系統的基本組成元件？",
         options: ["攝影機", "光源", "影像處理軟體", "區塊鏈模組"],
-        answer: 3,
+
       },
       {
         q: "邊緣偵測中，Canny 演算法的主要優勢是什麼？",
         options: ["計算速度最快", "能有效抑制雜訊並精確定位邊緣", "不需要設定閾值", "只適用於彩色影像"],
-        answer: 1,
+
       },
       {
         q: "在影像處理中，高斯濾波器主要用於？",
         options: ["銳化影像", "平滑影像（去除雜訊）", "偵測邊緣", "色彩轉換"],
-        answer: 1,
+
       },
       {
         q: "SIFT 特徵描述子具有下列哪些不變性？",
         options: ["僅旋轉不變性", "僅尺度不變性", "尺度與旋轉不變性", "僅平移不變性"],
-        answer: 2,
+
       },
       {
         q: "二值化 (Binarization) 處理的目的是？",
         options: ["將彩色影像轉為灰階", "將灰階影像轉為僅黑白兩色", "增加影像的對比度", "壓縮影像檔案大小"],
-        answer: 1,
+
       },
     ],
     en: [
       {
         q: "Which is NOT a basic component of a machine vision system?",
         options: ["Camera", "Lighting", "Image processing software", "Blockchain module"],
-        answer: 3,
+
       },
       {
         q: "What is the main advantage of the Canny edge detection algorithm?",
         options: ["Fastest computation", "Effective noise suppression with precise edge localization", "No threshold required", "Only works with color images"],
-        answer: 1,
+
       },
       {
         q: "In image processing, Gaussian filter is mainly used for?",
         options: ["Sharpening images", "Smoothing images (noise removal)", "Edge detection", "Color conversion"],
-        answer: 1,
+
       },
       {
         q: "SIFT feature descriptor has which invariance properties?",
         options: ["Rotation only", "Scale only", "Scale and rotation", "Translation only"],
-        answer: 2,
+
       },
       {
         q: "What is the purpose of binarization?",
         options: ["Convert color to grayscale", "Convert grayscale to black and white", "Increase contrast", "Compress file size"],
-        answer: 1,
+
       },
     ],
   },
@@ -60,54 +60,54 @@ const quizData = {
       {
         q: "Python 中哪個關鍵字用於定義函式？",
         options: ["function", "def", "func", "define"],
-        answer: 1,
+
       },
       {
         q: "下列哪個是 Python 的可變 (mutable) 資料型態？",
         options: ["tuple", "str", "list", "int"],
-        answer: 2,
+
       },
       {
         q: "監督式學習 (Supervised Learning) 需要什麼？",
         options: ["僅需輸入資料", "需要標註過的訓練資料", "不需要任何資料", "僅需輸出結果"],
-        answer: 1,
+
       },
       {
         q: "K-Means 演算法屬於哪種學習類型？",
         options: ["監督式學習", "非監督式學習", "強化學習", "半監督式學習"],
-        answer: 1,
+
       },
       {
         q: "NumPy 主要用於什麼用途？",
         options: ["網頁開發", "數值運算與陣列操作", "資料庫管理", "遊戲開發"],
-        answer: 1,
+
       },
     ],
     en: [
       {
         q: "Which keyword is used to define a function in Python?",
         options: ["function", "def", "func", "define"],
-        answer: 1,
+
       },
       {
         q: "Which is a mutable data type in Python?",
         options: ["tuple", "str", "list", "int"],
-        answer: 2,
+
       },
       {
         q: "What does Supervised Learning require?",
         options: ["Only input data", "Labeled training data", "No data at all", "Only output results"],
-        answer: 1,
+
       },
       {
         q: "K-Means algorithm belongs to which type of learning?",
         options: ["Supervised", "Unsupervised", "Reinforcement", "Semi-supervised"],
-        answer: 1,
+
       },
       {
         q: "What is NumPy mainly used for?",
         options: ["Web development", "Numerical computing and array operations", "Database management", "Game development"],
-        answer: 1,
+
       },
     ],
   },
@@ -116,54 +116,54 @@ const quizData = {
       {
         q: "PyTorch 中，自動微分的核心模組是？",
         options: ["torch.nn", "torch.autograd", "torch.optim", "torch.utils"],
-        answer: 1,
+
       },
       {
         q: "CNN 中池化層 (Pooling Layer) 的主要功能是？",
         options: ["增加參數量", "降低特徵圖的空間維度", "增加非線性", "正規化輸出"],
-        answer: 1,
+
       },
       {
         q: "在 PyTorch 中建立神經網路模型通常繼承哪個類別？",
         options: ["torch.Tensor", "torch.nn.Module", "torch.optim.Optimizer", "torch.Dataset"],
-        answer: 1,
+
       },
       {
         q: "Transformer 架構的核心機制是？",
         options: ["卷積運算", "循環連接", "自注意力機制 (Self-Attention)", "池化操作"],
-        answer: 2,
+
       },
       {
         q: "GAN 由哪兩個網路組成？",
         options: ["編碼器與解碼器", "生成器與判別器", "特徵提取器與分類器", "前向網路與反向網路"],
-        answer: 1,
+
       },
     ],
     en: [
       {
         q: "What is the core module for automatic differentiation in PyTorch?",
         options: ["torch.nn", "torch.autograd", "torch.optim", "torch.utils"],
-        answer: 1,
+
       },
       {
         q: "What is the main function of a Pooling Layer in CNN?",
         options: ["Increase parameters", "Reduce spatial dimensions of feature maps", "Add non-linearity", "Normalize output"],
-        answer: 1,
+
       },
       {
         q: "In PyTorch, neural network models typically inherit from?",
         options: ["torch.Tensor", "torch.nn.Module", "torch.optim.Optimizer", "torch.Dataset"],
-        answer: 1,
+
       },
       {
         q: "What is the core mechanism of the Transformer architecture?",
         options: ["Convolution", "Recurrent connections", "Self-Attention", "Pooling"],
-        answer: 2,
+
       },
       {
         q: "GAN consists of which two networks?",
         options: ["Encoder & Decoder", "Generator & Discriminator", "Feature Extractor & Classifier", "Forward & Backward Networks"],
-        answer: 1,
+
       },
     ],
   },
@@ -172,54 +172,54 @@ const quizData = {
       {
         q: "AI Agent 與傳統 AI 系統的主要區別是什麼？",
         options: ["運算速度更快", "具備自主決策與規劃能力", "使用更多資料", "僅能處理文字"],
-        answer: 1,
+
       },
       {
         q: "下列何者是 LLM（大型語言模型）的典型代表？",
         options: ["ResNet", "GPT / Claude", "YOLO", "K-Means"],
-        answer: 1,
+
       },
       {
         q: "Prompt Engineering 的主要目的是？",
         options: ["訓練模型權重", "透過設計提示詞引導模型產生更好的輸出", "壓縮模型大小", "加速推論速度"],
-        answer: 1,
+
       },
       {
         q: "在 AI Agent 中，「Tool Use」指的是？",
         options: ["安裝開發工具", "Agent 呼叫外部工具或 API 來完成任務", "訓練資料的前處理", "模型的超參數調整"],
-        answer: 1,
+
       },
       {
         q: "Multi-Agent 系統的優勢是什麼？",
         options: ["減少模型參數量", "多個 Agent 分工協作，處理更複雜的任務", "降低硬體需求", "僅適用於影像處理"],
-        answer: 1,
+
       },
     ],
     en: [
       {
         q: "What is the main difference between AI Agent and traditional AI systems?",
         options: ["Faster computation", "Autonomous decision-making and planning", "Uses more data", "Text-only processing"],
-        answer: 1,
+
       },
       {
         q: "Which is a typical example of LLM (Large Language Model)?",
         options: ["ResNet", "GPT / Claude", "YOLO", "K-Means"],
-        answer: 1,
+
       },
       {
         q: "What is the main purpose of Prompt Engineering?",
         options: ["Training model weights", "Designing prompts to guide better model outputs", "Compressing model size", "Speeding up inference"],
-        answer: 1,
+
       },
       {
         q: "In AI Agent, what does 'Tool Use' refer to?",
         options: ["Installing dev tools", "Agent calling external tools or APIs to complete tasks", "Data preprocessing", "Hyperparameter tuning"],
-        answer: 1,
+
       },
       {
         q: "What is the advantage of Multi-Agent systems?",
         options: ["Fewer model parameters", "Multiple agents collaborate to handle complex tasks", "Lower hardware requirements", "Only for image processing"],
-        answer: 1,
+
       },
     ],
   },
@@ -228,54 +228,246 @@ const quizData = {
       {
         q: "AI War 中，台灣在全球 AI 產業鏈中主要扮演什麼角色？",
         options: ["AI 軟體創新者", "AI 硬體提供者（半導體）", "AI 資料供應商", "AI 終端消費市場"],
-        answer: 1,
+
       },
       {
         q: "AOI（自動光學檢測）在智慧製造中的主要用途是？",
         options: ["產品包裝設計", "生產線品質檢測與瑕疵辨識", "員工績效評估", "財務報表分析"],
-        answer: 1,
+
       },
       {
         q: "生成式 AI（如 ChatGPT）對企業管理最大的影響是？",
         options: ["取代所有人力", "提升決策效率與內容產出能力", "僅適用於科技業", "降低企業營收"],
-        answer: 1,
+
       },
       {
         q: "下列何者最能描述台灣 2025 年經濟成長的主要驅動力？",
         options: ["觀光旅遊業", "農業出口", "AI 與半導體產業", "房地產市場"],
-        answer: 2,
+
       },
       {
         q: "管理者導入 AI 時，最重要的決策考量是什麼？",
         options: ["追求最新技術", "評估投資報酬率與風險", "完全取代人力", "僅關注成本節省"],
-        answer: 1,
+
       },
     ],
     en: [
       {
         q: "In the AI War, what role does Taiwan primarily play in the global AI supply chain?",
         options: ["AI software innovator", "AI hardware provider (semiconductors)", "AI data supplier", "AI end-consumer market"],
-        answer: 1,
+
       },
       {
         q: "What is the main purpose of AOI (Automated Optical Inspection) in smart manufacturing?",
         options: ["Product packaging design", "Production line quality inspection & defect detection", "Employee performance evaluation", "Financial report analysis"],
-        answer: 1,
+
       },
       {
         q: "What is the biggest impact of Generative AI (e.g., ChatGPT) on business management?",
         options: ["Replacing all human labor", "Improving decision efficiency and content generation", "Only applicable to tech industry", "Reducing company revenue"],
-        answer: 1,
+
       },
       {
         q: "Which best describes the main driver of Taiwan's 2025 economic growth?",
         options: ["Tourism industry", "Agricultural exports", "AI and semiconductor industry", "Real estate market"],
-        answer: 2,
+
       },
       {
         q: "What is the most important consideration when managers adopt AI?",
         options: ["Pursuing the latest technology", "Evaluating ROI and risk", "Completely replacing human workers", "Focusing only on cost savings"],
-        answer: 1,
+
+      },
+    ],
+  },
+  course6: {
+    zh: [
+      {
+        q: "Python 中，下列哪個資料型別是不可變的 (immutable)？",
+        options: ["list", "dict", "tuple", "set"],
+
+      },
+      {
+        q: "下列哪個關鍵字用於捕捉例外？",
+        options: ["catch", "except", "handle", "error"],
+
+      },
+      {
+        q: "在 Python 中，`__init__` 方法的主要用途是？",
+        options: ["刪除物件", "初始化物件屬性", "繼承父類別", "定義靜態方法"],
+
+      },
+      {
+        q: "MVC 架構中，負責處理商業邏輯的是哪個部分？",
+        options: ["Model", "View", "Controller", "Template"],
+
+      },
+      {
+        q: "下列哪個套件主要用於資料表格處理與分析？",
+        options: ["Matplotlib", "NumPy", "Pandas", "OpenCV"],
+
+      },
+      {
+        q: "Python 中，`with open('file.txt') as f:` 語法的優點是？",
+        options: ["讀取速度更快", "自動關閉檔案", "支援二進位模式", "可同時讀寫多個檔案"],
+
+      },
+      {
+        q: "下列何者不是 Python 的流程控制結構？",
+        options: ["if/elif/else", "for", "while", "switch/case"],
+
+      },
+      {
+        q: "FastAPI 主要用於建立什麼類型的應用？",
+        options: ["桌面應用程式", "Web API 服務", "遊戲引擎", "資料庫管理系統"],
+
+      },
+      {
+        q: "Vibe Coding 的核心概念是什麼？",
+        options: ["完全不需要寫程式", "結合 AI 工具輔助程式開發", "只使用低程式碼平台", "僅適用於前端開發"],
+
+      },
+      {
+        q: "Python 函式中，`*args` 的用途是？",
+        options: ["定義關鍵字引數", "接收任意數量的位置引數", "定義必要參數", "限制引數型態"],
+
+      },
+    ],
+    en: [
+      {
+        q: "Which Python data type is immutable?",
+        options: ["list", "dict", "tuple", "set"],
+
+      },
+      {
+        q: "Which keyword is used to catch exceptions in Python?",
+        options: ["catch", "except", "handle", "error"],
+
+      },
+      {
+        q: "What is the main purpose of the `__init__` method in Python?",
+        options: ["Delete an object", "Initialize object attributes", "Inherit from parent class", "Define static methods"],
+
+      },
+      {
+        q: "In the MVC architecture, which part handles business logic?",
+        options: ["Model", "View", "Controller", "Template"],
+
+      },
+      {
+        q: "Which library is mainly used for tabular data processing and analysis?",
+        options: ["Matplotlib", "NumPy", "Pandas", "OpenCV"],
+
+      },
+      {
+        q: "What is the advantage of `with open('file.txt') as f:` syntax in Python?",
+        options: ["Faster reading speed", "Automatic file closing", "Supports binary mode", "Can read/write multiple files simultaneously"],
+
+      },
+      {
+        q: "Which is NOT a Python control flow structure?",
+        options: ["if/elif/else", "for", "while", "switch/case"],
+
+      },
+      {
+        q: "What type of application is FastAPI mainly used to build?",
+        options: ["Desktop applications", "Web API services", "Game engines", "Database management systems"],
+
+      },
+      {
+        q: "What is the core concept of Vibe Coding?",
+        options: ["No coding required at all", "Using AI tools to assist development", "Only using low-code platforms", "Only for front-end development"],
+
+      },
+      {
+        q: "What is the purpose of `*args` in a Python function?",
+        options: ["Define keyword arguments", "Accept any number of positional arguments", "Define required parameters", "Restrict argument types"],
+
+      },
+    ],
+  },
+  course7: {
+    zh: [
+      {
+        q: "Python 中，print('Hello' + ' ' + 'World') 的輸出是什麼？",
+        options: ["HelloWorld", "Hello World", "Hello+World", "語法錯誤"],
+      },
+      {
+        q: "下列哪個是 Python 的合法變數名稱？",
+        options: ["2name", "my-var", "_count", "class"],
+      },
+      {
+        q: "Python 的 list 和 tuple 最主要的差別是？",
+        options: ["list 不能排序", "tuple 是可變的", "list 是可變的，tuple 是不可變的", "沒有差別"],
+      },
+      {
+        q: "if/elif/else 結構中，如果第一個 if 條件為 True，程式會？",
+        options: ["繼續檢查 elif", "執行 if 區塊後跳過 elif/else", "執行所有區塊", "產生錯誤"],
+      },
+      {
+        q: "Python 函式中 return 的作用是？",
+        options: ["印出結果", "結束函式並回傳值", "定義變數", "建立迴圈"],
+      },
+      {
+        q: "import math 之後，如何呼叫平方根函式？",
+        options: ["sqrt(9)", "math.sqrt(9)", "math->sqrt(9)", "import sqrt(9)"],
+      },
+      {
+        q: "try/except 結構的主要用途是？",
+        options: ["加速程式執行", "處理執行時期的例外錯誤", "定義函式", "匯入模組"],
+      },
+      {
+        q: "物件導向程式設計中，__init__ 方法的作用是？",
+        options: ["刪除物件", "建構子，初始化物件屬性", "繼承父類別", "定義靜態方法"],
+      },
+      {
+        q: "Prompt Engineering 的核心原則不包括下列哪項？",
+        options: ["給足脈絡與角色", "任務具體、指定格式", "完全信任 AI 輸出不需驗證", "迭代與驗證"],
+      },
+      {
+        q: "軟體開發生命週期（SDLC）的正確順序是？",
+        options: ["設計→需求→測試→實作", "需求→設計→實作→測試", "實作→設計→需求→測試", "測試→需求→設計→實作"],
+      },
+    ],
+    en: [
+      {
+        q: "What is the output of print('Hello' + ' ' + 'World') in Python?",
+        options: ["HelloWorld", "Hello World", "Hello+World", "Syntax error"],
+      },
+      {
+        q: "Which of the following is a valid Python variable name?",
+        options: ["2name", "my-var", "_count", "class"],
+      },
+      {
+        q: "What is the main difference between a list and a tuple in Python?",
+        options: ["Lists cannot be sorted", "Tuples are mutable", "Lists are mutable, tuples are immutable", "No difference"],
+      },
+      {
+        q: "In an if/elif/else structure, if the first if condition is True, the program will?",
+        options: ["Continue checking elif", "Execute the if block and skip elif/else", "Execute all blocks", "Raise an error"],
+      },
+      {
+        q: "What does the return statement do in a Python function?",
+        options: ["Print the result", "End the function and return a value", "Define a variable", "Create a loop"],
+      },
+      {
+        q: "After 'import math', how do you call the square root function?",
+        options: ["sqrt(9)", "math.sqrt(9)", "math->sqrt(9)", "import sqrt(9)"],
+      },
+      {
+        q: "What is the main purpose of try/except?",
+        options: ["Speed up execution", "Handle runtime exceptions", "Define functions", "Import modules"],
+      },
+      {
+        q: "In OOP, what is the purpose of the __init__ method?",
+        options: ["Delete an object", "Constructor that initializes object attributes", "Inherit from parent class", "Define a static method"],
+      },
+      {
+        q: "Which is NOT a core principle of Prompt Engineering?",
+        options: ["Provide context and role", "Be specific with tasks and format", "Fully trust AI output without verification", "Iterate and verify"],
+      },
+      {
+        q: "What is the correct order of the Software Development Life Cycle (SDLC)?",
+        options: ["Design→Requirements→Test→Implement", "Requirements→Design→Implement→Test", "Implement→Design→Requirements→Test", "Test→Requirements→Design→Implement"],
       },
     ],
   },
@@ -444,6 +636,242 @@ const homeworkData = {
       },
     ],
   },
+  course6: {
+    zh: [
+      {
+        id: "hw6-1",
+        title: "W1 練習與作業：導論環境建置",
+        desc: "完成 Python 環境安裝（Anaconda / VS Code），撰寫第一支 Python 程式，練習 print、input 與基本運算。",
+        due: "2026-09-15",
+      },
+      {
+        id: "hw6-2",
+        title: "W2 練習與作業：變數與運算式",
+        desc: "練習變數命名規則、各種運算子（算術、比較、邏輯）、型態轉換與字串格式化。",
+        due: "2026-09-22",
+      },
+      {
+        id: "hw6-3",
+        title: "W3 練習與作業：資料型別",
+        desc: "練習 List、Tuple、Dict、Set、String 的操作，包含新增、刪除、切片、排序等常用方法。",
+        due: "2026-09-29",
+      },
+      {
+        id: "hw6-4",
+        title: "W4 練習與作業：流程圖與條件判斷",
+        desc: "練習 if/elif/else 條件判斷、while 與 for 迴圈、巢狀迴圈，並繪製對應流程圖。",
+        due: "2026-10-06",
+      },
+      {
+        id: "hw6-5",
+        title: "W5 練習與作業：函式",
+        desc: "練習函式定義、參數傳遞（位置/關鍵字/預設值）、回傳值、變數作用域與遞迴函式。",
+        due: "2026-10-13",
+      },
+      {
+        id: "hw6-6",
+        title: "W6 練習與作業：模組與套件",
+        desc: "練習 import 機制、建立自訂模組、使用 pip 安裝第三方套件，了解 __name__ 機制。",
+        due: "2026-10-20",
+      },
+      {
+        id: "hw6-7",
+        title: "W7 練習與作業：檔案讀寫與例外處理",
+        desc: "練習檔案開啟/讀取/寫入、with 語法、CSV 處理，以及 try/except 例外處理機制。",
+        due: "2026-10-27",
+      },
+      {
+        id: "hw6-8",
+        title: "W8 練習與作業：物件導向程式設計",
+        desc: "練習 Class 定義、__init__、繼承、封裝與多型，實作一個簡單的物件導向應用。",
+        due: "2026-11-03",
+      },
+      {
+        id: "hw6-9",
+        title: "W10 練習與作業：MVC 小計算機",
+        desc: "使用 MVC 架構實作一個具有 GUI 介面的小計算機應用程式。",
+        due: "2026-11-17",
+      },
+      {
+        id: "hw6-10",
+        title: "W11 練習與作業：資料分析工具",
+        desc: "使用 Pandas 讀取資料集，進行資料清理與統計分析，並以 Matplotlib 繪製視覺化圖表。",
+        due: "2026-11-24",
+      },
+      {
+        id: "hw6-11",
+        title: "W12 練習與作業：影像處理與網頁應用",
+        desc: "使用 OpenCV 進行基礎影像處理，並結合 FastAPI 建立簡易網頁應用。",
+        due: "2026-12-01",
+      },
+      {
+        id: "hw6-12",
+        title: "W13 練習與作業：API 查詢服務",
+        desc: "使用 requests 呼叫公開 API，解析 JSON 回應，並將結果整合至應用程式中。",
+        due: "2026-12-08",
+      },
+      {
+        id: "hw6-13",
+        title: "W14 練習與作業：整合型小網站",
+        desc: "整合前後端技術，建立一個包含資料查詢、視覺化與使用者互動功能的小型網站。",
+        due: "2026-12-15",
+      },
+      {
+        id: "hw6-14",
+        title: "W15 練習與作業：Vibe Coding 導論",
+        desc: "運用 AI 工具（如 Claude Code、Copilot）輔助程式開發，完成一個互動式應用原型。",
+        due: "2026-12-22",
+      },
+      {
+        id: "hw6-15",
+        title: "W16 練習與作業：迭代除錯部署",
+        desc: "對既有專案進行除錯與優化，學習部署流程，完成專題提案書。",
+        due: "2026-12-29",
+      },
+      {
+        id: "hw6-16",
+        title: "期末專題",
+        desc: "完成期末專題開發與成果展示簡報，進行同儕互評。專題需整合課程所學技術，展現解決實際問題的能力。",
+        due: "2027-01-12",
+      },
+    ],
+    en: [
+      {
+        id: "hw6-1",
+        title: "W1 Exercise: Introduction & Setup",
+        desc: "Install Python environment (Anaconda / VS Code), write your first Python program, practice print, input, and basic operations.",
+        due: "2026-09-15",
+      },
+      {
+        id: "hw6-2",
+        title: "W2 Exercise: Variables & Expressions",
+        desc: "Practice variable naming rules, operators (arithmetic, comparison, logical), type conversion, and string formatting.",
+        due: "2026-09-22",
+      },
+      {
+        id: "hw6-3",
+        title: "W3 Exercise: Data Types",
+        desc: "Practice List, Tuple, Dict, Set, String operations including add, delete, slicing, and sorting methods.",
+        due: "2026-09-29",
+      },
+      {
+        id: "hw6-4",
+        title: "W4 Exercise: Flow Charts & Conditionals",
+        desc: "Practice if/elif/else conditionals, while and for loops, nested loops, and draw corresponding flowcharts.",
+        due: "2026-10-06",
+      },
+      {
+        id: "hw6-5",
+        title: "W5 Exercise: Functions",
+        desc: "Practice function definition, parameter passing (positional/keyword/default), return values, scope, and recursion.",
+        due: "2026-10-13",
+      },
+      {
+        id: "hw6-6",
+        title: "W6 Exercise: Modules & Packages",
+        desc: "Practice import mechanism, create custom modules, use pip to install packages, understand __name__ mechanism.",
+        due: "2026-10-20",
+      },
+      {
+        id: "hw6-7",
+        title: "W7 Exercise: File I/O & Exceptions",
+        desc: "Practice file open/read/write, with syntax, CSV handling, and try/except exception handling.",
+        due: "2026-10-27",
+      },
+      {
+        id: "hw6-8",
+        title: "W8 Exercise: Object-Oriented Programming",
+        desc: "Practice Class definition, __init__, inheritance, encapsulation, and polymorphism. Build a simple OOP application.",
+        due: "2026-11-03",
+      },
+      {
+        id: "hw6-9",
+        title: "W10 Exercise: MVC Calculator",
+        desc: "Build a GUI calculator application using the MVC architectural pattern.",
+        due: "2026-11-17",
+      },
+      {
+        id: "hw6-10",
+        title: "W11 Exercise: Data Analysis Tools",
+        desc: "Use Pandas to read datasets, perform data cleaning and statistical analysis, and create visualizations with Matplotlib.",
+        due: "2026-11-24",
+      },
+      {
+        id: "hw6-11",
+        title: "W12 Exercise: Image Processing & Web App",
+        desc: "Use OpenCV for basic image processing and build a simple web application with FastAPI.",
+        due: "2026-12-01",
+      },
+      {
+        id: "hw6-12",
+        title: "W13 Exercise: API Query Service",
+        desc: "Use requests to call public APIs, parse JSON responses, and integrate results into an application.",
+        due: "2026-12-08",
+      },
+      {
+        id: "hw6-13",
+        title: "W14 Exercise: Integrated Website",
+        desc: "Integrate front-end and back-end technologies to build a small website with data query, visualization, and user interaction.",
+        due: "2026-12-15",
+      },
+      {
+        id: "hw6-14",
+        title: "W15 Exercise: Vibe Coding Introduction",
+        desc: "Use AI tools (Claude Code, Copilot) to assist development, complete an interactive application prototype.",
+        due: "2026-12-22",
+      },
+      {
+        id: "hw6-15",
+        title: "W16 Exercise: Iterative Debugging & Deployment",
+        desc: "Debug and optimize an existing project, learn deployment workflow, and complete the project proposal.",
+        due: "2026-12-29",
+      },
+      {
+        id: "hw6-16",
+        title: "Final Project",
+        desc: "Complete final project development and presentation with peer review. Must integrate course technologies and demonstrate problem-solving skills.",
+        due: "2027-01-12",
+      },
+    ],
+  },
+  course7: {
+    zh: [
+      { id: "hw7-1", title: "W1 練習與作業：導論與環境建置", desc: "完成 Python 環境安裝（Anaconda / VS Code），撰寫第一支 Python 程式，練習 print、input 與基本運算。", due: "2026-09-15" },
+      { id: "hw7-2", title: "W2 練習與作業：變數與運算式", desc: "練習變數命名規則、各種運算子（算術、比較、邏輯）、型態轉換與字串格式化。", due: "2026-09-22" },
+      { id: "hw7-3", title: "W3 練習與作業：資料型別", desc: "練習 List、Tuple、Dict、Set、String 的操作，包含新增、刪除、切片、排序等常用方法。", due: "2026-09-29" },
+      { id: "hw7-4", title: "W4 練習與作業：流程圖與條件判斷", desc: "練習 if/elif/else 條件判斷、while 與 for 迴圈、巢狀迴圈，並繪製對應流程圖。", due: "2026-10-06" },
+      { id: "hw7-5", title: "W5 練習與作業：函式", desc: "練習函式定義、參數傳遞（位置/關鍵字/預設值）、回傳值、變數作用域與遞迴函式。", due: "2026-10-13" },
+      { id: "hw7-6", title: "W6 練習與作業：模組與套件", desc: "練習 import 機制、建立自訂模組、使用 pip 安裝第三方套件，了解 __name__ 機制。", due: "2026-10-20" },
+      { id: "hw7-7", title: "W7 練習與作業：檔案讀寫與例外處理", desc: "練習檔案開啟/讀取/寫入、with 語法、CSV 處理，以及 try/except 例外處理機制。", due: "2026-10-27" },
+      { id: "hw7-8", title: "W8 練習與作業：物件導向程式設計", desc: "練習 Class 定義、__init__、繼承、封裝與多型，實作一個簡單的物件導向應用。", due: "2026-11-03" },
+      { id: "hw7-9", title: "W10 練習與作業：MVC 小計算機", desc: "使用 MVC 架構實作一個具有 GUI 介面的小計算機應用程式。", due: "2026-11-17" },
+      { id: "hw7-10", title: "W11 練習與作業：資料分析工具", desc: "使用 Pandas 讀取資料集，進行資料清理與統計分析，並以 Matplotlib 繪製視覺化圖表。", due: "2026-11-24" },
+      { id: "hw7-11", title: "W12 練習與作業：影像處理與網頁應用", desc: "使用 OpenCV 進行基礎影像處理，並結合 FastAPI 建立簡易網頁應用。", due: "2026-12-01" },
+      { id: "hw7-12", title: "W13 練習與作業：API 查詢服務", desc: "使用 requests 呼叫公開 API，解析 JSON 回應，並將結果整合至應用程式中。", due: "2026-12-08" },
+      { id: "hw7-13", title: "W14 練習與作業：整合型小網站", desc: "整合前後端技術，建立一個包含資料查詢、視覺化與使用者互動功能的小型網站。", due: "2026-12-15" },
+      { id: "hw7-14", title: "W15 練習與作業：Vibe Coding 導論", desc: "運用 AI 工具（如 Claude Code、Copilot）輔助程式開發，完成一個互動式應用原型。", due: "2026-12-22" },
+      { id: "hw7-15", title: "W16 練習與作業：迭代除錯部署", desc: "對既有專案進行除錯與優化，學習部署流程，完成專題提案書。", due: "2026-12-29" },
+      { id: "hw7-16", title: "期末專題", desc: "完成期末專題開發與成果展示簡報，進行同儕互評。專題需整合課程所學技術，展現解決實際問題的能力。", due: "2027-01-12" },
+    ],
+    en: [
+      { id: "hw7-1", title: "W1 Exercise: Introduction & Setup", desc: "Install Python environment (Anaconda / VS Code), write your first Python program, practice print, input, and basic operations.", due: "2026-09-15" },
+      { id: "hw7-2", title: "W2 Exercise: Variables & Expressions", desc: "Practice variable naming rules, operators (arithmetic, comparison, logical), type conversion, and string formatting.", due: "2026-09-22" },
+      { id: "hw7-3", title: "W3 Exercise: Data Types", desc: "Practice List, Tuple, Dict, Set, String operations including add, delete, slicing, and sorting methods.", due: "2026-09-29" },
+      { id: "hw7-4", title: "W4 Exercise: Flow Charts & Conditionals", desc: "Practice if/elif/else conditionals, while and for loops, nested loops, and draw corresponding flowcharts.", due: "2026-10-06" },
+      { id: "hw7-5", title: "W5 Exercise: Functions", desc: "Practice function definition, parameter passing (positional/keyword/default), return values, scope, and recursion.", due: "2026-10-13" },
+      { id: "hw7-6", title: "W6 Exercise: Modules & Packages", desc: "Practice import mechanism, create custom modules, use pip to install packages, understand __name__.", due: "2026-10-20" },
+      { id: "hw7-7", title: "W7 Exercise: File I/O & Exceptions", desc: "Practice file open/read/write, with statement, CSV processing, and try/except exception handling.", due: "2026-10-27" },
+      { id: "hw7-8", title: "W8 Exercise: OOP", desc: "Practice Class definition, __init__, inheritance, encapsulation, polymorphism. Build a simple OOP application.", due: "2026-11-03" },
+      { id: "hw7-9", title: "W10 Exercise: MVC Calculator", desc: "Build a GUI calculator application using the MVC architecture pattern.", due: "2026-11-17" },
+      { id: "hw7-10", title: "W11 Exercise: Data Analysis", desc: "Use Pandas for data loading, cleaning and analysis. Visualize results with Matplotlib charts.", due: "2026-11-24" },
+      { id: "hw7-11", title: "W12 Exercise: Image Processing & Web", desc: "Use OpenCV for basic image processing and build a simple web application with FastAPI.", due: "2026-12-01" },
+      { id: "hw7-12", title: "W13 Exercise: API Query Service", desc: "Use requests to call public APIs, parse JSON responses, and integrate results into an application.", due: "2026-12-08" },
+      { id: "hw7-13", title: "W14 Exercise: Integrated Website", desc: "Build a small website integrating data querying, visualization, and user interaction features.", due: "2026-12-15" },
+      { id: "hw7-14", title: "W15 Exercise: Vibe Coding Intro", desc: "Use AI tools (Claude Code, Copilot) to assist development and build an interactive app prototype.", due: "2026-12-22" },
+      { id: "hw7-15", title: "W16 Exercise: Debug & Deploy", desc: "Debug and optimize an existing project, learn deployment workflow, and complete project proposal.", due: "2026-12-29" },
+      { id: "hw7-16", title: "Final Project", desc: "Complete final project development and presentation with peer review. Must integrate course technologies.", due: "2027-01-12" },
+    ],
+  },
 };
 
 const resourceData = [
@@ -553,6 +981,39 @@ const resourceData = [
       { name_zh: "機器視覺系統之架構", name_en: "Machine Vision System Architecture", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜機器視覺系統架構與元件", desc_en: "PDF | Machine Vision System Architecture & Components" },
       { name_zh: "Applications of Machine Vision — 四大領域", name_en: "Applications of Machine Vision — Four Domains", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜機器視覺四大應用領域", desc_en: "PDF | Four Application Domains of Machine Vision" },
       { name_zh: "爭鮮案 — Case Study", name_en: "Sushi Chain Case Study", url: "https://drive.google.com/drive/folders/1hzdCR1d_aczKTtuYiLh0FzeqQshauzjo", desc_zh: "PDF｜機器視覺與 AOI 營運改善案例", desc_en: "PDF | Machine Vision & AOI Operations Improvement Case" },
+    ],
+  },
+  {
+    category: "res_cat_pl",
+    folderUrl: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing",
+    items: [
+      { name_zh: "W1 — 導論環境建置與第一支程式", name_en: "W1 — Introduction, Setup & First Program", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜Python 安裝、IDLE、VS Code、第一支程式", desc_en: "PDF | Python Installation, IDLE, VS Code, First Program" },
+      { name_zh: "W2 — 變數與運算式", name_en: "W2 — Variables & Expressions", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜變數命名、資料型態、運算子", desc_en: "PDF | Variable Naming, Data Types, Operators" },
+      { name_zh: "W3 — 資料型別", name_en: "W3 — Data Types", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜List、Tuple、Dict、Set、String", desc_en: "PDF | List, Tuple, Dict, Set, String" },
+      { name_zh: "W4 — 流程圖與條件判斷", name_en: "W4 — Flow Charts & Conditionals", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜if/elif/else、while、for 迴圈", desc_en: "PDF | if/elif/else, while, for loops" },
+      { name_zh: "W5 — 函式", name_en: "W5 — Functions", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜函式定義、參數、回傳值、遞迴", desc_en: "PDF | Function Definition, Parameters, Return, Recursion" },
+      { name_zh: "W6 — 模組與套件", name_en: "W6 — Modules & Packages", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜import、pip、自訂模組", desc_en: "PDF | import, pip, Custom Modules" },
+      { name_zh: "W7 — 檔案讀寫與例外處理", name_en: "W7 — File I/O & Exception Handling", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜open/read/write、try/except", desc_en: "PDF | open/read/write, try/except" },
+      { name_zh: "W8 — 物件導向程式設計", name_en: "W8 — Object-Oriented Programming", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜Class、繼承、封裝、多型", desc_en: "PDF | Class, Inheritance, Encapsulation, Polymorphism" },
+      { name_zh: "W10 — MVC 小計算機", name_en: "W10 — MVC Calculator", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜MVC 架構、GUI 設計", desc_en: "PDF | MVC Architecture, GUI Design" },
+      { name_zh: "W11 — 資料分析工具", name_en: "W11 — Data Analysis Tools", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜Pandas、Matplotlib、資料視覺化", desc_en: "PDF | Pandas, Matplotlib, Data Visualization" },
+      { name_zh: "W12 — 影像處理與網頁應用", name_en: "W12 — Image Processing & Web App", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜OpenCV、FastAPI、網頁整合", desc_en: "PDF | OpenCV, FastAPI, Web Integration" },
+      { name_zh: "W13 — API 查詢服務", name_en: "W13 — API Query Service", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜RESTful API、requests、JSON 解析", desc_en: "PDF | RESTful API, requests, JSON Parsing" },
+      { name_zh: "W14 — 整合型小網站", name_en: "W14 — Integrated Website", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜前後端整合、部署", desc_en: "PDF | Full-stack Integration, Deployment" },
+      { name_zh: "W15 — Vibe Coding 導論與互動應用", name_en: "W15 — Vibe Coding & Interactive Apps", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜AI 輔助程式開發、互動應用", desc_en: "PDF | AI-Assisted Development, Interactive Apps" },
+      { name_zh: "W16 — 迭代除錯部署與專題提案", name_en: "W16 — Iterative Debugging, Deployment & Proposal", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜Debug 技巧、部署流程、專題提案", desc_en: "PDF | Debug Techniques, Deployment, Project Proposal" },
+      { name_zh: "W17 — 成果展示與同儕互評", name_en: "W17 — Final Showcase & Peer Review", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜專題展示、互評機制", desc_en: "PDF | Project Showcase, Peer Review" },
+      { name_zh: "EXTRA — 資料科學套件入門", name_en: "EXTRA — Data Science Packages Intro", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜NumPy、Pandas、Matplotlib 補充教材", desc_en: "PDF | NumPy, Pandas, Matplotlib Supplementary" },
+      { name_zh: "期末專題說明", name_en: "Final Project Guidelines", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜專題要求、評分標準、範本", desc_en: "PDF | Project Requirements, Rubric, Templates" },
+    ],
+  },
+  {
+    category: "res_cat_pl2",
+    folderUrl: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing",
+    items: [
+      { name_zh: "📖 教材投影片（Google Drive）", name_en: "📖 Teaching Slides (Google Drive)", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "全部教材 PPT，含 W1–W17 各週投影片", desc_en: "All teaching PPT slides, W1–W17 weekly materials" },
+      { name_zh: "💻 PPT 程式範例（Google Drive）", name_en: "💻 Demo Programs (Google Drive)", url: "https://drive.google.com/drive/folders/1jZ0m5DZQ2tPl7rwTWBjsezMXcul3kKqm?usp=sharing", desc_zh: "投影片中使用的程式範例原始碼", desc_en: "Source code for demo programs used in slides" },
+      { name_zh: "📝 每週作業（Google Drive）", name_en: "📝 Weekly Homework (Google Drive)", url: "https://drive.google.com/drive/folders/1To3GNKdfZ4DYrsv5JedZeOfdZbK-4pjF?usp=sharing", desc_zh: "每週作業 Notebook 下載", desc_en: "Weekly homework notebook downloads" },
     ],
   },
 ];

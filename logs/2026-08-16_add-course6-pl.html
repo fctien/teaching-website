@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>實驗記錄 — 新增 Course6 程式語言課程</title>
+<style>
+  body { font-family: 'Segoe UI', sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.7; color: #333; }
+  h1 { border-bottom: 3px solid #2563eb; padding-bottom: 0.5rem; }
+  h2 { color: #2563eb; margin-top: 2rem; }
+  .meta { background: #f1f5f9; padding: 1rem; border-radius: 8px; margin: 1rem 0; }
+  .meta dt { font-weight: 600; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+  th { background: #e0e7ff; }
+  .pass { color: #16a34a; font-weight: 700; }
+  .file { font-family: monospace; background: #f3f4f6; padding: 2px 6px; border-radius: 4px; }
+  code { background: #f3f4f6; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+  ul { padding-left: 1.5rem; }
+  .issue { background: #fef3c7; padding: 0.75rem; border-left: 4px solid #f59e0b; margin: 0.5rem 0; border-radius: 4px; }
+  .resolved { background: #dcfce7; padding: 0.75rem; border-left: 4px solid #16a34a; margin: 0.5rem 0; border-radius: 4px; }
+</style>
+</head>
+<body>
+
+<h1>實驗記錄 — 新增 Course6 程式語言課程</h1>
+
+<div class="meta">
+<dl>
+  <dt>日期</dt><dd>2026-08-16</dd>
+  <dt>專案</dt><dd>teaching-website (fctien/teaching-website)</dd>
+  <dt>目標</dt><dd>新增第六門課程「程式語言」(course6)，包含課程卡片、測驗、作業、教學資源</dd>
+</dl>
+</div>
+
+<h2>1. 變更摘要</h2>
+
+<table>
+<thead>
+<tr><th>檔案</th><th>變更內容</th></tr>
+</thead>
+<tbody>
+<tr><td class="file">index.html</td><td>新增 course6 課程卡片、測驗按鈕、作業下拉選單、管理後台下拉選單（共 6 處）</td></tr>
+<tr><td class="file">js/i18n.js</td><td>新增 course6_title、course6_desc、course6_topics、res_cat_pl 中英文翻譯</td></tr>
+<tr><td class="file">js/data.js</td><td>新增 PL 教學資源（18 項）、course6 作業（16 項）、course6 測驗（10 題）</td></tr>
+<tr><td class="file">js/youtube.js</td><td>新增 <code>pl</code> 影片分類，含關鍵字與優先權設定</td></tr>
+<tr><td class="file">js/students.js</td><td>supervisor 帳號加入 course6 權限</td></tr>
+<tr><td class="file">js/app.js</td><td>renderCourseTopics 迴圈上限從 5 改為 6</td></tr>
+</tbody>
+</table>
+
+<h2>2. 課程資料規格</h2>
+
+<table>
+<thead>
+<tr><th>項目</th><th>數量</th><th>備註</th></tr>
+</thead>
+<tbody>
+<tr><td>課程主題</td><td>6 組</td><td>W1-W8（基礎）、W10-W14（應用）、W15-W17（Vibe Coding）</td></tr>
+<tr><td>教學資源 PDF</td><td>18 項</td><td>僅學生版，連結至 Google Drive</td></tr>
+<tr><td>作業</td><td>16 項</td><td>W1-W8、W10-W16、期末專題，截止日 2026/09/15 ~ 2027/01/12</td></tr>
+<tr><td>測驗題</td><td>10 題</td><td>中英雙語，涵蓋 Python 基礎至 Vibe Coding</td></tr>
+</tbody>
+</table>
+
+<p>PDF 資源連結：<a href="https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing">Google Drive 資料夾</a></p>
+
+<h2>3. 過程中的問題與修復</h2>
+
+<div class="issue">
+  <strong>問題：</strong><code>PL_DRIVE_FOLDER</code> const 宣告順序錯誤<br>
+  <code>resourceData</code> 中引用了 <code>PL_DRIVE_FOLDER</code>，但該 const 在 <code>resourceData</code> 之後才宣告，觸發 <code>ReferenceError: Cannot access 'PL_DRIVE_FOLDER' before initialization</code>。
+</div>
+
+<div class="resolved">
+  <strong>修復：</strong>移除 <code>PL_DRIVE_FOLDER</code> const，改為在所有引用處直接內嵌 Google Drive URL 字串。
+</div>
+
+<div class="issue">
+  <strong>問題：</strong>瀏覽器快取頑固保留舊版 JS<br>
+  修復後瀏覽器 console 仍顯示舊錯誤，即使重啟 dev server 也未清除。
+</div>
+
+<div class="resolved">
+  <strong>驗證方式：</strong>透過 <code>fetch('/js/data.js?nocache=...')</code> 確認伺服器端檔案已正確更新（<code>hasPL: false</code>）。頁面重新載入後所有功能正常運作。
+</div>
+
+<h2>4. 驗證結果</h2>
+
+<table>
+<thead>
+<tr><th>測試項目</th><th>結果</th></tr>
+</thead>
+<tbody>
+<tr><td>resourceData 含 6 個分類（含 res_cat_pl）</td><td class="pass">PASS</td></tr>
+<tr><td>PL 資源 18 項</td><td class="pass">PASS</td></tr>
+<tr><td>quizData.course6 中英各 10 題</td><td class="pass">PASS</td></tr>
+<tr><td>homeworkData.course6 中英各 16 項</td><td class="pass">PASS</td></tr>
+<tr><td>course6Topics 渲染 6 個主題</td><td class="pass">PASS</td></tr>
+<tr><td>影片篩選按鈕「💻 程式語言」存在</td><td class="pass">PASS</td></tr>
+<tr><td>courseCategories 含 pl 分類</td><td class="pass">PASS</td></tr>
+<tr><td>作業下拉選單 (hwCourseSelect) 含 course6</td><td class="pass">PASS</td></tr>
+<tr><td>管理後台作業下拉 (adminHwCourse) 含 course6</td><td class="pass">PASS</td></tr>
+<tr><td>測驗按鈕 data-course="course6" 存在</td><td class="pass">PASS</td></tr>
+<tr><td>頁面課程卡片「程式語言」渲染正確</td><td class="pass">PASS</td></tr>
+</tbody>
+</table>
+
+<h2>5. 注意事項</h2>
+<ul>
+  <li>本次新增為 course6，<strong>未取代</strong>原有的 course2（人工智慧導論與程式語言）</li>
+  <li>PDF 資源僅包含學生版（非教師版）</li>
+  <li>所有 PDF 連結指向同一 Google Drive 資料夾，學生可自行瀏覽下載</li>
+</ul>
+
+</body>
+</html>

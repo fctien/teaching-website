@@ -1,4 +1,6 @@
 // ===== Security Utilities =====
+const _SESSION_SECRET = crypto.getRandomValues(new Uint8Array(32));
+
 async function hashPassword(password) {
   const encoder = new TextEncoder();
   const data = encoder.encode(password + "_teaching_salt_2026");
@@ -8,6 +10,18 @@ async function hashPassword(password) {
     .join("");
 }
 
+async function _signSession(obj) {
+  const enc = new TextEncoder();
+  const key = await crypto.subtle.importKey("raw", _SESSION_SECRET, { name: "HMAC", hash: "SHA-256" }, false, ["sign"]);
+  const sig = await crypto.subtle.sign("HMAC", key, enc.encode(JSON.stringify(obj)));
+  return Array.from(new Uint8Array(sig)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function _verifySession(obj, sig) {
+  const expected = await _signSession(obj);
+  return expected === sig;
+}
+
 function escapeHtml(str) {
   if (!str) return "";
   const div = document.createElement("div");
@@ -15,18 +29,43 @@ function escapeHtml(str) {
   return div.innerHTML;
 }
 
+// ===== Login rate limiting =====
+const _loginAttempts = {};
+function _checkRateLimit(username) {
+  const now = Date.now();
+  const record = _loginAttempts[username];
+  if (!record) return true;
+  if (record.lockedUntil && now < record.lockedUntil) return false;
+  if (record.lockedUntil && now >= record.lockedUntil) {
+    delete _loginAttempts[username];
+    return true;
+  }
+  return true;
+}
+function _recordFailedLogin(username) {
+  const now = Date.now();
+  if (!_loginAttempts[username]) _loginAttempts[username] = { count: 0, first: now };
+  _loginAttempts[username].count++;
+  if (_loginAttempts[username].count >= 5) {
+    _loginAttempts[username].lockedUntil = now + 60000;
+  }
+}
+
 // ===== State =====
-let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+let _sessionSig = null;
+let currentUser = null;
 let users = JSON.parse(localStorage.getItem("users")) || {};
 let hwSubmissions = JSON.parse(localStorage.getItem("hwSubmissions")) || {};
 
 // ===== Navigation =====
 function showSection(id) {
-  // Block non-supervisors from admin
+  // Block non-supervisors from admin (with session signature check)
   if (id === "admin") {
     users = JSON.parse(localStorage.getItem("users")) || {};
-    if (!currentUser || users[currentUser.username]?.role !== "supervisor") return;
-    // Auto-render current tab
+    if (!currentUser || !_sessionSig || users[currentUser.username]?.role !== "supervisor") return;
+    _verifySession(currentUser, _sessionSig).then(valid => {
+      if (!valid) { doLogout(); return; }
+    });
     setTimeout(() => renderAdminStudents(), 50);
   }
 
@@ -86,17 +125,18 @@ function updateAuthUI() {
 }
 
 function updateProtectedSections() {
+  const loggedIn = currentUser && _sessionSig;
   document.querySelectorAll(".login-required-box").forEach((box) => {
-    box.style.display = currentUser ? "none" : "block";
+    box.style.display = loggedIn ? "none" : "block";
   });
   document.querySelectorAll(".protected-content").forEach((el) => {
-    el.style.display = currentUser ? "block" : "none";
+    el.style.display = loggedIn ? "block" : "none";
   });
 
   // Show/hide admin nav
   const adminNav = document.getElementById("navAdminItem");
   users = JSON.parse(localStorage.getItem("users")) || {};
-  const isSupervisor = currentUser && users[currentUser.username]?.role === "supervisor";
+  const isSupervisor = loggedIn && users[currentUser.username]?.role === "supervisor";
   if (adminNav) {
     adminNav.style.display = isSupervisor ? "block" : "none";
   }
@@ -182,23 +222,36 @@ async function doLogin() {
 
   if (!username || !password) return;
 
+  if (!_checkRateLimit(username)) {
+    document.getElementById("loginError").style.display = "block";
+    document.getElementById("loginError").textContent =
+      currentLang === "zh" ? "登入嘗試過多，請 1 分鐘後再試" : "Too many attempts. Try again in 1 minute.";
+    return;
+  }
+
   // Reload users in case initStudentAccounts updated them
   users = JSON.parse(localStorage.getItem("users")) || {};
 
   const hashedInput = await hashPassword(password);
   if (users[username] && users[username].password === hashedInput) {
     currentUser = { username, role: users[username].role };
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
+    _sessionSig = await _signSession(currentUser);
+    delete _loginAttempts[username];
     closeLoginModal();
     updateAuthUI();
     showToast(t("login_success"), "success");
   } else {
+    _recordFailedLogin(username);
     document.getElementById("loginError").style.display = "block";
     document.getElementById("loginError").textContent = t("login_error");
   }
 }
 
 async function doRegister() {
+  // 訪客註冊暫時停用
+  showToast("訪客註冊功能暫時停用 / Registration is temporarily disabled", "error");
+  return;
+
   const name = document.getElementById("regName").value.trim();
   const username = document.getElementById("regUsername").value.trim();
   const password = document.getElementById("regPassword").value;
@@ -403,25 +456,46 @@ function quizPrev() {
   if (quizState.current > 0) { quizState.current--; renderQuiz(); }
 }
 
-function submitQuiz() {
+async function _hashRecord(obj) {
+  const copy = Object.assign({}, obj);
+  delete copy.checksum;
+  const str = JSON.stringify(copy) + "_grade_integrity_2026";
+  const hash = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, "0")).join("");
+}
+
+function _getAnswerKey() {
+  if (!window._cachedQK) window._cachedQK = _dqk();
+  return window._cachedQK;
+}
+
+function _getAnswer(course, lang, index) {
+  const key = _getAnswerKey();
+  const answers = key[course]?.[lang] || key[course]?.["zh"];
+  return answers ? answers[index] : -1;
+}
+
+async function submitQuiz() {
   quizState.submitted = true;
 
-  // Save result for admin
   if (currentUser) {
     const questions = quizData[quizState.course][currentLang] || quizData[quizState.course]["zh"];
+    const lang = quizData[quizState.course][currentLang] ? currentLang : "zh";
     let correct = 0;
-    questions.forEach((q, i) => { if (quizState.answers[i] === q.answer) correct++; });
+    questions.forEach((q, i) => { if (quizState.answers[i] === _getAnswer(quizState.course, lang, i)) correct++; });
     const pct = Math.round((correct / questions.length) * 100);
 
     let quizResults = JSON.parse(localStorage.getItem("quizResults")) || [];
-    quizResults.push({
+    const record = {
       userId: currentUser.username,
       course: quizState.course,
       score: pct,
       correct: correct,
       total: questions.length,
       date: new Date().toISOString(),
-    });
+    };
+    record.checksum = await _hashRecord(record);
+    quizResults.push(record);
     localStorage.setItem("quizResults", JSON.stringify(quizResults));
   }
 
@@ -430,8 +504,9 @@ function submitQuiz() {
 
 function showQuizResult() {
   const questions = quizData[quizState.course][currentLang] || quizData[quizState.course]["zh"];
+  const lang = quizData[quizState.course][currentLang] ? currentLang : "zh";
   let correct = 0;
-  questions.forEach((q, i) => { if (quizState.answers[i] === q.answer) correct++; });
+  questions.forEach((q, i) => { if (quizState.answers[i] === _getAnswer(quizState.course, lang, i)) correct++; });
   const pct = Math.round((correct / questions.length) * 100);
 
   document.getElementById("quizScoreNum").textContent = pct + "%";
@@ -457,8 +532,27 @@ function renderHomework() {
   }
 
   const hws = homeworkData[courseKey][currentLang] || homeworkData[courseKey]["zh"];
+
+  const downloadOnly = courseKey === "course6" || courseKey === "course7";
+  const driveFolder = "https://drive.google.com/drive/folders/1To3GNKdfZ4DYrsv5JedZeOfdZbK-4pjF?usp=sharing";
+
   list.innerHTML = hws
     .map((hw) => {
+      if (downloadOnly) {
+        return `
+      <div class="hw-card">
+        <div class="hw-card-header" onclick="this.nextElementSibling.classList.toggle('open')" style="cursor:pointer;">
+          <h4>${hw.title}</h4>
+          <a href="${driveFolder}" target="_blank" rel="noopener" class="btn btn-primary" onclick="event.stopPropagation();" style="font-size:0.8rem;padding:0.3rem 0.8rem;white-space:nowrap;">
+            📥 ${currentLang === "zh" ? "下載作業" : "Download"}
+          </a>
+        </div>
+        <div class="hw-card-body">
+          <div class="hw-desc">${hw.desc}</div>
+        </div>
+      </div>`;
+      }
+
       const sub = hwSubmissions[hw.id];
       let statusClass = "pending";
       let statusText = t("hw_status_pending");
@@ -529,7 +623,7 @@ function onLanguageChange() {
 }
 
 function renderCourseTopics() {
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 6; i++) {
     const el = document.getElementById(`course${i}Topics`);
     if (!el) continue;
     const topics = t(`course${i}_topics`).split(",");

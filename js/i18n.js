@@ -45,6 +45,12 @@ const translations = {
     course5_title: "AI 時代的企業決策與智慧製造：從機器視覺到生成式 AI",
     course5_desc: "本課程從 EMBA 管理者視角出發，探討 AI 如何影響企業營運、智慧製造、產業競爭與管理決策。結合 Machine Vision、AOI、Generative AI、AI Agent 與 AI War 等主題，建立面向未來的 AI 決策思維。涵蓋技術理解、企業應用與產業戰略三大主軸。",
     course5_topics: "AI / ML / DL 基礎概念,AI / AI Agent 簡介,機器視覺與 iAOI 檢測技術,AI Agent 與自動化流程,AI War 與全球競爭態勢,台灣 AI 產業定位與半導體,Case Study",
+    course6_title: "2026 -人工智慧導論與程式語言",
+    course6_desc: "本課程以 Python 為核心，採三階段教學架構：Phase 1（W1-W8）建立語法基礎，涵蓋變數、資料型別、流程控制、函式、模組與物件導向；Phase 2（W10-W14）進入應用開發，包含 MVC 架構、資料分析、影像處理、API 服務與整合型網站；Phase 3（W15-W17）導入 Vibe Coding，結合 AI 工具進行迭代除錯、部署與成果展示。強調動手實作、逐週練習與期末專題。",
+    course6_topics: "W1-W3 導論、變數與運算式、資料型別,W4-W5 流程圖與條件判斷、函式,W6-W8 模組與套件、檔案讀寫、物件導向,W10-W11 MVC 小計算機、資料分析工具,W12-W14 影像處理與網頁、API 查詢、整合型小網站,W15-W17 Vibe Coding 導論、迭代除錯部署、成果展示",
+    course7_title: "2026 人工智慧簡介及程式語言",
+    course7_desc: "本課程以 Python 程式語言為核心，結合人工智慧簡介與 Prompt Engineering，採三階段架構：① Python 基礎（W1–W8）：變數、流程控制、函式、資料結構、檔案與資料處理；② AI 協作與小專題（W9–W13）：與 ChatGPT / Claude 對話開發、MVC 架構、計算機、資料分析與 FastAPI 網站；③ Vibe Coding（W14–W16）：用 AI 快速打造可運行、可分享的應用並整合成期末專題。強調軟體工程（SDLC）、提示工程與動手實作。",
+    course7_topics: "W1 導論與環境建置,W2 變數與運算式,W3 資料型別,W4 流程圖與條件判斷,W5 函式,W6 模組與套件,W7 檔案讀寫與例外處理,W8 物件導向與期中複習,W9 期中考,W10-W11 AI 協作小專題（MVC、資料分析）,W12-W13 影像處理、API 查詢,W14-W16 Vibe Coding 與期末專題,W17-W18 成果展示與同儕互評",
     course_topics_label: "課程主題",
     course_syllabus: "課程大綱",
     course_materials: "教材下載",
@@ -66,6 +72,8 @@ const translations = {
     res_cat_dl: "深度學習",
     res_cat_agent: "AI Agent",
     res_cat_emba: "EMBA — 企業決策與智慧製造 / 精實管理與數位轉型 / 決策與大數據分析",
+    res_cat_pl: "2026 -人工智慧導論與程式語言",
+    res_cat_pl2: "2026 人工智慧簡介及程式語言",
 
     // Apps
     nav_apps: "App 下載",
@@ -224,6 +232,12 @@ const translations = {
     course5_title: "AI-Driven Business Decisions & Smart Manufacturing: From Machine Vision to Generative AI",
     course5_desc: "This EMBA course examines how AI impacts business operations, smart manufacturing, industry competition, and management decisions. Covering Machine Vision, AOI, Generative AI, AI Agent, and the AI War, it builds future-oriented AI decision-making frameworks for executives across three pillars: technical understanding, enterprise applications, and industry strategy.",
     course5_topics: "AI / ML / DL Fundamentals,AI / AI Agent Introduction,Machine Vision & iAOI Inspection,AI Agent & Process Automation,AI War & Global Competition,Taiwan's AI Industry & Semiconductor Position,Case Study",
+    course6_title: "2026 - Introduction to AI & Programming Language",
+    course6_desc: "This course uses Python as its core language with a three-phase teaching structure: Phase 1 (W1-W8) establishes syntax fundamentals covering variables, data types, control flow, functions, modules, and OOP; Phase 2 (W10-W14) focuses on application development including MVC architecture, data analysis, image processing, API services, and integrated web applications; Phase 3 (W15-W17) introduces Vibe Coding, combining AI tools for iterative debugging, deployment, and final project presentations. Emphasizes hands-on practice, weekly exercises, and a capstone project.",
+    course6_topics: "W1-W3 Introduction, Variables & Expressions, Data Types,W4-W5 Flow Charts & Conditionals, Functions,W6-W8 Modules & Packages, File I/O, OOP,W10-W11 MVC Calculator, Data Analysis Tools,W12-W14 Image Processing & Web, API Services, Integrated Website,W15-W17 Vibe Coding, Iterative Debugging & Deployment, Final Showcase",
+    course7_title: "2026 Introduction to AI & Programming Language",
+    course7_desc: "This course uses Python as its core language combined with an introduction to AI and Prompt Engineering, structured in three phases: ① Python Basics (W1–W8): variables, control flow, functions, data structures, file I/O; ② AI Collaboration & Mini Projects (W9–W13): developing with ChatGPT/Claude, MVC architecture, calculator, data analysis & FastAPI websites; ③ Vibe Coding (W14–W16): rapidly building shareable applications with AI and integrating into a capstone project. Emphasizes SDLC, Prompt Engineering, and hands-on practice.",
+    course7_topics: "W1 Introduction & Setup,W2 Variables & Expressions,W3 Data Types,W4 Flow Charts & Conditionals,W5 Functions,W6 Modules & Packages,W7 File I/O & Exception Handling,W8 OOP & Midterm Review,W9 Midterm Exam,W10-W11 AI Collaboration (MVC & Data Analysis),W12-W13 Image Processing & API Services,W14-W16 Vibe Coding & Final Project,W17-W18 Final Showcase & Peer Review",
     course_topics_label: "Topics",
     course_syllabus: "Syllabus",
     course_materials: "Materials",
@@ -243,6 +257,8 @@ const translations = {
     res_cat_dl: "Deep Learning",
     res_cat_agent: "AI Agent",
     res_cat_emba: "EMBA — Business Decisions & Smart Manufacturing / Lean Management & Digital Transformation / Decision Making & Big Data Analytics",
+    res_cat_pl: "2026 - Introduction to AI & Programming Language",
+    res_cat_pl2: "2026 Introduction to AI & Programming Language",
 
     // Apps
     nav_apps: "Apps",
