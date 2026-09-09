@@ -385,92 +385,6 @@ const quizData = {
       },
     ],
   },
-  course7: {
-    zh: [
-      {
-        q: "Python 中，print('Hello' + ' ' + 'World') 的輸出是什麼？",
-        options: ["HelloWorld", "Hello World", "Hello+World", "語法錯誤"],
-      },
-      {
-        q: "下列哪個是 Python 的合法變數名稱？",
-        options: ["2name", "my-var", "_count", "class"],
-      },
-      {
-        q: "Python 的 list 和 tuple 最主要的差別是？",
-        options: ["list 不能排序", "tuple 是可變的", "list 是可變的，tuple 是不可變的", "沒有差別"],
-      },
-      {
-        q: "if/elif/else 結構中，如果第一個 if 條件為 True，程式會？",
-        options: ["繼續檢查 elif", "執行 if 區塊後跳過 elif/else", "執行所有區塊", "產生錯誤"],
-      },
-      {
-        q: "Python 函式中 return 的作用是？",
-        options: ["印出結果", "結束函式並回傳值", "定義變數", "建立迴圈"],
-      },
-      {
-        q: "import math 之後，如何呼叫平方根函式？",
-        options: ["sqrt(9)", "math.sqrt(9)", "math->sqrt(9)", "import sqrt(9)"],
-      },
-      {
-        q: "try/except 結構的主要用途是？",
-        options: ["加速程式執行", "處理執行時期的例外錯誤", "定義函式", "匯入模組"],
-      },
-      {
-        q: "物件導向程式設計中，__init__ 方法的作用是？",
-        options: ["刪除物件", "建構子，初始化物件屬性", "繼承父類別", "定義靜態方法"],
-      },
-      {
-        q: "Prompt Engineering 的核心原則不包括下列哪項？",
-        options: ["給足脈絡與角色", "任務具體、指定格式", "完全信任 AI 輸出不需驗證", "迭代與驗證"],
-      },
-      {
-        q: "軟體開發生命週期（SDLC）的正確順序是？",
-        options: ["設計→需求→測試→實作", "需求→設計→實作→測試", "實作→設計→需求→測試", "測試→需求→設計→實作"],
-      },
-    ],
-    en: [
-      {
-        q: "What is the output of print('Hello' + ' ' + 'World') in Python?",
-        options: ["HelloWorld", "Hello World", "Hello+World", "Syntax error"],
-      },
-      {
-        q: "Which of the following is a valid Python variable name?",
-        options: ["2name", "my-var", "_count", "class"],
-      },
-      {
-        q: "What is the main difference between a list and a tuple in Python?",
-        options: ["Lists cannot be sorted", "Tuples are mutable", "Lists are mutable, tuples are immutable", "No difference"],
-      },
-      {
-        q: "In an if/elif/else structure, if the first if condition is True, the program will?",
-        options: ["Continue checking elif", "Execute the if block and skip elif/else", "Execute all blocks", "Raise an error"],
-      },
-      {
-        q: "What does the return statement do in a Python function?",
-        options: ["Print the result", "End the function and return a value", "Define a variable", "Create a loop"],
-      },
-      {
-        q: "After 'import math', how do you call the square root function?",
-        options: ["sqrt(9)", "math.sqrt(9)", "math->sqrt(9)", "import sqrt(9)"],
-      },
-      {
-        q: "What is the main purpose of try/except?",
-        options: ["Speed up execution", "Handle runtime exceptions", "Define functions", "Import modules"],
-      },
-      {
-        q: "In OOP, what is the purpose of the __init__ method?",
-        options: ["Delete an object", "Constructor that initializes object attributes", "Inherit from parent class", "Define a static method"],
-      },
-      {
-        q: "Which is NOT a core principle of Prompt Engineering?",
-        options: ["Provide context and role", "Be specific with tasks and format", "Fully trust AI output without verification", "Iterate and verify"],
-      },
-      {
-        q: "What is the correct order of the Software Development Life Cycle (SDLC)?",
-        options: ["Design→Requirements→Test→Implement", "Requirements→Design→Implement→Test", "Implement→Design→Requirements→Test", "Test→Requirements→Design→Implement"],
-      },
-    ],
-  },
 };
 
 const homeworkData = {
@@ -834,44 +748,6 @@ const homeworkData = {
       },
     ],
   },
-  course7: {
-    zh: [
-      { id: "hw7-1", title: "W1 練習與作業：導論與環境建置", desc: "完成 Python 環境安裝（Anaconda / VS Code），撰寫第一支 Python 程式，練習 print、input 與基本運算。", due: "2026-09-15" },
-      { id: "hw7-2", title: "W2 練習與作業：變數與運算式", desc: "練習變數命名規則、各種運算子（算術、比較、邏輯）、型態轉換與字串格式化。", due: "2026-09-22" },
-      { id: "hw7-3", title: "W3 練習與作業：資料型別", desc: "練習 List、Tuple、Dict、Set、String 的操作，包含新增、刪除、切片、排序等常用方法。", due: "2026-09-29" },
-      { id: "hw7-4", title: "W4 練習與作業：流程圖與條件判斷", desc: "練習 if/elif/else 條件判斷、while 與 for 迴圈、巢狀迴圈，並繪製對應流程圖。", due: "2026-10-06" },
-      { id: "hw7-5", title: "W5 練習與作業：函式", desc: "練習函式定義、參數傳遞（位置/關鍵字/預設值）、回傳值、變數作用域與遞迴函式。", due: "2026-10-13" },
-      { id: "hw7-6", title: "W6 練習與作業：模組與套件", desc: "練習 import 機制、建立自訂模組、使用 pip 安裝第三方套件，了解 __name__ 機制。", due: "2026-10-20" },
-      { id: "hw7-7", title: "W7 練習與作業：檔案讀寫與例外處理", desc: "練習檔案開啟/讀取/寫入、with 語法、CSV 處理，以及 try/except 例外處理機制。", due: "2026-10-27" },
-      { id: "hw7-8", title: "W8 練習與作業：物件導向程式設計", desc: "練習 Class 定義、__init__、繼承、封裝與多型，實作一個簡單的物件導向應用。", due: "2026-11-03" },
-      { id: "hw7-9", title: "W10 練習與作業：MVC 小計算機", desc: "使用 MVC 架構實作一個具有 GUI 介面的小計算機應用程式。", due: "2026-11-17" },
-      { id: "hw7-10", title: "W11 練習與作業：資料分析工具", desc: "使用 Pandas 讀取資料集，進行資料清理與統計分析，並以 Matplotlib 繪製視覺化圖表。", due: "2026-11-24" },
-      { id: "hw7-11", title: "W12 練習與作業：影像處理與網頁應用", desc: "使用 OpenCV 進行基礎影像處理，並結合 FastAPI 建立簡易網頁應用。", due: "2026-12-01" },
-      { id: "hw7-12", title: "W13 練習與作業：API 查詢服務", desc: "使用 requests 呼叫公開 API，解析 JSON 回應，並將結果整合至應用程式中。", due: "2026-12-08" },
-      { id: "hw7-13", title: "W14 練習與作業：整合型小網站", desc: "整合前後端技術，建立一個包含資料查詢、視覺化與使用者互動功能的小型網站。", due: "2026-12-15" },
-      { id: "hw7-14", title: "W15 練習與作業：Vibe Coding 導論", desc: "運用 AI 工具（如 Claude Code、Copilot）輔助程式開發，完成一個互動式應用原型。", due: "2026-12-22" },
-      { id: "hw7-15", title: "W16 練習與作業：迭代除錯部署", desc: "對既有專案進行除錯與優化，學習部署流程，完成專題提案書。", due: "2026-12-29" },
-      { id: "hw7-16", title: "期末專題", desc: "完成期末專題開發與成果展示簡報，進行同儕互評。專題需整合課程所學技術，展現解決實際問題的能力。", due: "2027-01-12" },
-    ],
-    en: [
-      { id: "hw7-1", title: "W1 Exercise: Introduction & Setup", desc: "Install Python environment (Anaconda / VS Code), write your first Python program, practice print, input, and basic operations.", due: "2026-09-15" },
-      { id: "hw7-2", title: "W2 Exercise: Variables & Expressions", desc: "Practice variable naming rules, operators (arithmetic, comparison, logical), type conversion, and string formatting.", due: "2026-09-22" },
-      { id: "hw7-3", title: "W3 Exercise: Data Types", desc: "Practice List, Tuple, Dict, Set, String operations including add, delete, slicing, and sorting methods.", due: "2026-09-29" },
-      { id: "hw7-4", title: "W4 Exercise: Flow Charts & Conditionals", desc: "Practice if/elif/else conditionals, while and for loops, nested loops, and draw corresponding flowcharts.", due: "2026-10-06" },
-      { id: "hw7-5", title: "W5 Exercise: Functions", desc: "Practice function definition, parameter passing (positional/keyword/default), return values, scope, and recursion.", due: "2026-10-13" },
-      { id: "hw7-6", title: "W6 Exercise: Modules & Packages", desc: "Practice import mechanism, create custom modules, use pip to install packages, understand __name__.", due: "2026-10-20" },
-      { id: "hw7-7", title: "W7 Exercise: File I/O & Exceptions", desc: "Practice file open/read/write, with statement, CSV processing, and try/except exception handling.", due: "2026-10-27" },
-      { id: "hw7-8", title: "W8 Exercise: OOP", desc: "Practice Class definition, __init__, inheritance, encapsulation, polymorphism. Build a simple OOP application.", due: "2026-11-03" },
-      { id: "hw7-9", title: "W10 Exercise: MVC Calculator", desc: "Build a GUI calculator application using the MVC architecture pattern.", due: "2026-11-17" },
-      { id: "hw7-10", title: "W11 Exercise: Data Analysis", desc: "Use Pandas for data loading, cleaning and analysis. Visualize results with Matplotlib charts.", due: "2026-11-24" },
-      { id: "hw7-11", title: "W12 Exercise: Image Processing & Web", desc: "Use OpenCV for basic image processing and build a simple web application with FastAPI.", due: "2026-12-01" },
-      { id: "hw7-12", title: "W13 Exercise: API Query Service", desc: "Use requests to call public APIs, parse JSON responses, and integrate results into an application.", due: "2026-12-08" },
-      { id: "hw7-13", title: "W14 Exercise: Integrated Website", desc: "Build a small website integrating data querying, visualization, and user interaction features.", due: "2026-12-15" },
-      { id: "hw7-14", title: "W15 Exercise: Vibe Coding Intro", desc: "Use AI tools (Claude Code, Copilot) to assist development and build an interactive app prototype.", due: "2026-12-22" },
-      { id: "hw7-15", title: "W16 Exercise: Debug & Deploy", desc: "Debug and optimize an existing project, learn deployment workflow, and complete project proposal.", due: "2026-12-29" },
-      { id: "hw7-16", title: "Final Project", desc: "Complete final project development and presentation with peer review. Must integrate course technologies.", due: "2027-01-12" },
-    ],
-  },
 };
 
 const resourceData = [
@@ -1005,15 +881,6 @@ const resourceData = [
       { name_zh: "W17 — 成果展示與同儕互評", name_en: "W17 — Final Showcase & Peer Review", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜專題展示、互評機制", desc_en: "PDF | Project Showcase, Peer Review" },
       { name_zh: "EXTRA — 資料科學套件入門", name_en: "EXTRA — Data Science Packages Intro", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜NumPy、Pandas、Matplotlib 補充教材", desc_en: "PDF | NumPy, Pandas, Matplotlib Supplementary" },
       { name_zh: "期末專題說明", name_en: "Final Project Guidelines", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "PDF｜專題要求、評分標準、範本", desc_en: "PDF | Project Requirements, Rubric, Templates" },
-    ],
-  },
-  {
-    category: "res_cat_pl2",
-    folderUrl: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing",
-    items: [
-      { name_zh: "📖 教材投影片（Google Drive）", name_en: "📖 Teaching Slides (Google Drive)", url: "https://drive.google.com/drive/folders/1MJs7wH2AelWACkMjFNaKOJyiQUQE5wLP?usp=sharing", desc_zh: "全部教材 PPT，含 W1–W17 各週投影片", desc_en: "All teaching PPT slides, W1–W17 weekly materials" },
-      { name_zh: "💻 PPT 程式範例（Google Drive）", name_en: "💻 Demo Programs (Google Drive)", url: "https://drive.google.com/drive/folders/1jZ0m5DZQ2tPl7rwTWBjsezMXcul3kKqm?usp=sharing", desc_zh: "投影片中使用的程式範例原始碼", desc_en: "Source code for demo programs used in slides" },
-      { name_zh: "📝 每週作業（Google Drive）", name_en: "📝 Weekly Homework (Google Drive)", url: "https://drive.google.com/drive/folders/1To3GNKdfZ4DYrsv5JedZeOfdZbK-4pjF?usp=sharing", desc_zh: "每週作業 Notebook 下載", desc_en: "Weekly homework notebook downloads" },
     ],
   },
 ];

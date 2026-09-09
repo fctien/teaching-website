@@ -26,7 +26,7 @@ const translations = {
     about_research_items: "機器視覺與影像處理｜深度學習與異常檢測｜人工智慧應用｜工業自動化與品質檢測",
     about_email: "電子郵件",
     about_office: "辦公室",
-    about_office_val: "國立臺北科技大學",
+    about_office_val: "宏裕科技大樓 1125室",
 
     // Courses
     courses_title: "課程列表",
@@ -48,9 +48,6 @@ const translations = {
     course6_title: "2026 -人工智慧導論與程式語言",
     course6_desc: "本課程以 Python 為核心，採三階段教學架構：Phase 1（W1-W8）建立語法基礎，涵蓋變數、資料型別、流程控制、函式、模組與物件導向；Phase 2（W10-W14）進入應用開發，包含 MVC 架構、資料分析、影像處理、API 服務與整合型網站；Phase 3（W15-W17）導入 Vibe Coding，結合 AI 工具進行迭代除錯、部署與成果展示。強調動手實作、逐週練習與期末專題。",
     course6_topics: "W1-W3 導論、變數與運算式、資料型別,W4-W5 流程圖與條件判斷、函式,W6-W8 模組與套件、檔案讀寫、物件導向,W10-W11 MVC 小計算機、資料分析工具,W12-W14 影像處理與網頁、API 查詢、整合型小網站,W15-W17 Vibe Coding 導論、迭代除錯部署、成果展示",
-    course7_title: "2026 人工智慧簡介及程式語言",
-    course7_desc: "本課程以 Python 程式語言為核心，結合人工智慧簡介與 Prompt Engineering，採三階段架構：① Python 基礎（W1–W8）：變數、流程控制、函式、資料結構、檔案與資料處理；② AI 協作與小專題（W9–W13）：與 ChatGPT / Claude 對話開發、MVC 架構、計算機、資料分析與 FastAPI 網站；③ Vibe Coding（W14–W16）：用 AI 快速打造可運行、可分享的應用並整合成期末專題。強調軟體工程（SDLC）、提示工程與動手實作。",
-    course7_topics: "W1 導論與環境建置,W2 變數與運算式,W3 資料型別,W4 流程圖與條件判斷,W5 函式,W6 模組與套件,W7 檔案讀寫與例外處理,W8 物件導向與期中複習,W9 期中考,W10-W11 AI 協作小專題（MVC、資料分析）,W12-W13 影像處理、API 查詢,W14-W16 Vibe Coding 與期末專題,W17-W18 成果展示與同儕互評",
     course_topics_label: "課程主題",
     course_syllabus: "課程大綱",
     course_materials: "教材下載",
@@ -73,7 +70,6 @@ const translations = {
     res_cat_agent: "AI Agent",
     res_cat_emba: "EMBA — 企業決策與智慧製造 / 精實管理與數位轉型 / 決策與大數據分析",
     res_cat_pl: "2026 -人工智慧導論與程式語言",
-    res_cat_pl2: "2026 人工智慧簡介及程式語言",
 
     // Apps
     nav_apps: "App 下載",
@@ -214,7 +210,7 @@ const translations = {
     about_research_items: "Machine Vision & Image Processing | Deep Learning & Anomaly Detection | Artificial Intelligence Applications | Industrial Automation & Quality Inspection",
     about_email: "Email",
     about_office: "Office",
-    about_office_val: "National Taipei University of Technology",
+    about_office_val: "Hong-Yu Technology Building, Room 1125",
 
     courses_title: "Courses",
     course1_title: "Machine Vision Principles & Applications",
@@ -235,9 +231,6 @@ const translations = {
     course6_title: "2026 - Introduction to AI & Programming Language",
     course6_desc: "This course uses Python as its core language with a three-phase teaching structure: Phase 1 (W1-W8) establishes syntax fundamentals covering variables, data types, control flow, functions, modules, and OOP; Phase 2 (W10-W14) focuses on application development including MVC architecture, data analysis, image processing, API services, and integrated web applications; Phase 3 (W15-W17) introduces Vibe Coding, combining AI tools for iterative debugging, deployment, and final project presentations. Emphasizes hands-on practice, weekly exercises, and a capstone project.",
     course6_topics: "W1-W3 Introduction, Variables & Expressions, Data Types,W4-W5 Flow Charts & Conditionals, Functions,W6-W8 Modules & Packages, File I/O, OOP,W10-W11 MVC Calculator, Data Analysis Tools,W12-W14 Image Processing & Web, API Services, Integrated Website,W15-W17 Vibe Coding, Iterative Debugging & Deployment, Final Showcase",
-    course7_title: "2026 Introduction to AI & Programming Language",
-    course7_desc: "This course uses Python as its core language combined with an introduction to AI and Prompt Engineering, structured in three phases: ① Python Basics (W1–W8): variables, control flow, functions, data structures, file I/O; ② AI Collaboration & Mini Projects (W9–W13): developing with ChatGPT/Claude, MVC architecture, calculator, data analysis & FastAPI websites; ③ Vibe Coding (W14–W16): rapidly building shareable applications with AI and integrating into a capstone project. Emphasizes SDLC, Prompt Engineering, and hands-on practice.",
-    course7_topics: "W1 Introduction & Setup,W2 Variables & Expressions,W3 Data Types,W4 Flow Charts & Conditionals,W5 Functions,W6 Modules & Packages,W7 File I/O & Exception Handling,W8 OOP & Midterm Review,W9 Midterm Exam,W10-W11 AI Collaboration (MVC & Data Analysis),W12-W13 Image Processing & API Services,W14-W16 Vibe Coding & Final Project,W17-W18 Final Showcase & Peer Review",
     course_topics_label: "Topics",
     course_syllabus: "Syllabus",
     course_materials: "Materials",
@@ -258,7 +251,6 @@ const translations = {
     res_cat_agent: "AI Agent",
     res_cat_emba: "EMBA — Business Decisions & Smart Manufacturing / Lean Management & Digital Transformation / Decision Making & Big Data Analytics",
     res_cat_pl: "2026 - Introduction to AI & Programming Language",
-    res_cat_pl2: "2026 Introduction to AI & Programming Language",
 
     // Apps
     nav_apps: "Apps",

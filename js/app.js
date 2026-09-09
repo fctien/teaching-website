@@ -533,7 +533,7 @@ function renderHomework() {
 
   const hws = homeworkData[courseKey][currentLang] || homeworkData[courseKey]["zh"];
 
-  const downloadOnly = courseKey === "course6" || courseKey === "course7";
+  const downloadOnly = courseKey === "course6";
   const driveFolder = "https://drive.google.com/drive/folders/1To3GNKdfZ4DYrsv5JedZeOfdZbK-4pjF?usp=sharing";
 
   list.innerHTML = hws
