@@ -73,6 +73,7 @@ const translations = {
 
     // Apps
     nav_apps: "App 下載",
+    apps_login_required: "請先登入以下載應用程式",
     apps_title: "App 下載",
     apps_desc: "下載由 iVi Lab 開發的 AI 應用程式，可直接在 Windows 上執行，無需安裝 Python 環境。",
     apps_drive_title: "Google Drive — App 下載資料夾",
@@ -254,6 +255,7 @@ const translations = {
 
     // Apps
     nav_apps: "Apps",
+    apps_login_required: "Please log in to download applications",
     apps_title: "App Downloads",
     apps_desc: "Download AI applications developed by iVi Lab. Run directly on Windows without Python installation.",
     apps_drive_title: "Google Drive — App Download Folder",
