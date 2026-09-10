@@ -179,6 +179,11 @@ const translations = {
     admin_reset_pwd_confirm: "確定要將 {0} 的密碼重設為學號嗎？",
     admin_reset_pwd_success: "密碼已重設！",
     admin_all_courses: "全部課程",
+    admin_roster_add: "+ 新增學生",
+    admin_roster_delete: "刪除",
+    admin_roster_batch: "批次匯入 Excel",
+    admin_roster_save: "儲存並下載 roster.enc",
+    admin_roster_actions_col: "操作",
 
     // Footer
     footer_text: "© 2026 FC Tien 教授 ｜ 國立臺北科技大學 工業工程與管理系 ｜ 智慧視覺檢測實驗室",
@@ -358,6 +363,11 @@ const translations = {
     admin_reset_pwd_confirm: "Reset password for {0} to their Student ID?",
     admin_reset_pwd_success: "Password has been reset!",
     admin_all_courses: "All Courses",
+    admin_roster_add: "+ Add Student",
+    admin_roster_delete: "Delete",
+    admin_roster_batch: "Batch Import Excel",
+    admin_roster_save: "Save & Download roster.enc",
+    admin_roster_actions_col: "Actions",
 
     footer_text: "© 2026 Prof. FC Tien | NTUT Dept. of IE&M | iVi Lab",
     footer_thesis: "Thesis Format Corrector",

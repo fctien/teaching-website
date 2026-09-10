@@ -667,6 +667,8 @@ function switchAdminTab(tabId) {
 }
 
 // --- Student Roster ---
+let _rosterDirty = false;
+
 function renderAdminStudents() {
   const tbody = document.getElementById("adminStudentBody");
   const countEl = document.getElementById("adminStudentCount");
@@ -677,25 +679,26 @@ function renderAdminStudents() {
   let studentList = [];
 
   if (courseFilter === "all") {
-    // Collect all students from all rosters
     for (const courseKey of Object.keys(studentRoster)) {
       const roster = studentRoster[courseKey];
       for (const s of roster.students) {
         if (!studentList.find((x) => x.id === s.id)) {
           const courseNames = [];
+          const courseKeys = [];
           for (const ck of Object.keys(studentRoster)) {
             if (studentRoster[ck].students.find((st) => st.id === s.id)) {
               courseNames.push(t(`${ck}_title`) || ck);
+              courseKeys.push(ck);
             }
           }
-          studentList.push({ ...s, courseNames });
+          studentList.push({ ...s, courseNames, courseKeys });
         }
       }
     }
   } else {
     const roster = studentRoster[courseFilter];
     if (roster) {
-      studentList = roster.students.map((s) => ({ ...s, courseNames: [t(`${courseFilter}_title`)] }));
+      studentList = roster.students.map((s) => ({ ...s, courseNames: [t(`${courseFilter}_title`)], courseKeys: [courseFilter] }));
     }
   }
 
@@ -709,15 +712,179 @@ function renderAdminStudents() {
     const pwdBadge = pwdChanged
       ? `<span class="admin-badge changed">${t("admin_pwd_changed")}</span>`
       : `<span class="admin-badge default">${t("admin_pwd_default")}</span>`;
+    const resetBtn = pwdChanged
+      ? `<button class="admin-btn" onclick="resetStudentPwd('${escapeHtml(s.id)}','${escapeHtml(s.name)}')">${t("admin_reset_pwd")}</button> `
+      : "";
+    const delBtn = `<button class="admin-btn" style="color:var(--danger,#e74c3c);" onclick="deleteStudent('${escapeHtml(s.id)}','${escapeHtml(s.name)}','${escapeHtml(s.courseKeys.join(","))}')">${t("admin_roster_delete")}</button>`;
     return `<tr>
       <td>${i + 1}</td>
       <td>${escapeHtml(s.id)}</td>
       <td>${escapeHtml(s.name)}</td>
       <td>${escapeHtml(s.courseNames.join(", "))}</td>
       <td>${pwdBadge}</td>
-      <td>${pwdChanged ? `<button class="admin-btn" onclick="resetStudentPwd('${escapeHtml(s.id)}','${escapeHtml(s.name)}')">${t("admin_reset_pwd")}</button>` : "-"}</td>
+      <td>${resetBtn}${delBtn}</td>
     </tr>`;
   }).join("");
+}
+
+function showRosterMsg(msg, type) {
+  const el = document.getElementById("adminRosterMsg");
+  if (!el) return;
+  el.textContent = msg;
+  el.style.display = "block";
+  el.style.background = type === "success" ? "#d4edda" : type === "error" ? "#f8d7da" : "#cce5ff";
+  el.style.color = type === "success" ? "#155724" : type === "error" ? "#721c24" : "#004085";
+  setTimeout(() => { el.style.display = "none"; }, 4000);
+}
+
+function addSingleStudent() {
+  const courseKey = document.getElementById("addStudentCourse").value;
+  const studentId = document.getElementById("addStudentId").value.trim();
+  const studentName = document.getElementById("addStudentName").value.trim();
+
+  if (!studentId || !studentName) {
+    showRosterMsg(currentLang === "zh" ? "請填入學號和姓名" : "Please enter student ID and name", "error");
+    return;
+  }
+
+  if (!studentRoster[courseKey]) {
+    studentRoster[courseKey] = { students: [] };
+  }
+
+  if (studentRoster[courseKey].students.find(s => s.id === studentId)) {
+    showRosterMsg(currentLang === "zh" ? `學號 ${studentId} 已存在於此課程` : `Student ${studentId} already exists in this course`, "error");
+    return;
+  }
+
+  studentRoster[courseKey].students.push({ id: studentId, name: studentName, nickname: "", password: studentId });
+  _rosterDirty = true;
+
+  document.getElementById("addStudentId").value = "";
+  document.getElementById("addStudentName").value = "";
+
+  showRosterMsg(currentLang === "zh" ? `已新增 ${studentName} (${studentId})` : `Added ${studentName} (${studentId})`, "success");
+  renderAdminStudents();
+}
+
+function deleteStudent(studentId, studentName, courseKeysStr) {
+  const courseKeys = courseKeysStr.split(",");
+  const msg = currentLang === "zh"
+    ? `確定要刪除 ${studentName} (${studentId}) 嗎？`
+    : `Delete ${studentName} (${studentId})?`;
+  if (!confirm(msg)) return;
+
+  for (const ck of courseKeys) {
+    if (studentRoster[ck]) {
+      studentRoster[ck].students = studentRoster[ck].students.filter(s => s.id !== studentId);
+    }
+  }
+  _rosterDirty = true;
+
+  showRosterMsg(currentLang === "zh" ? `已刪除 ${studentName}` : `Deleted ${studentName}`, "success");
+  renderAdminStudents();
+}
+
+function batchUploadStudents(input) {
+  if (!input.files.length) return;
+  const file = input.files[0];
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const data = new Uint8Array(e.target.result);
+    const wb = XLSX.read(data, { type: "array" });
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(ws);
+
+    let added = 0;
+    let skipped = 0;
+    for (const row of rows) {
+      const course = String(row["課程 (Course)"] || "").trim();
+      const id = String(row["學號 (Student No)"] || "").trim();
+      const name = String(row["姓名 (Name)"] || "").trim();
+      const nickname = String(row["暱稱 (Nickname)"] || "").trim();
+      const password = String(row["密碼 (Password)"] || id).trim();
+      if (!course || !id) { skipped++; continue; }
+
+      if (!studentRoster[course]) {
+        studentRoster[course] = { students: [] };
+      }
+      if (studentRoster[course].students.find(s => s.id === id)) {
+        skipped++;
+        continue;
+      }
+      studentRoster[course].students.push({ id, name, nickname, password });
+      added++;
+    }
+    _rosterDirty = true;
+    input.value = "";
+
+    showRosterMsg(
+      currentLang === "zh"
+        ? `匯入完成：新增 ${added} 人，略過 ${skipped} 人`
+        : `Import done: ${added} added, ${skipped} skipped`,
+      "success"
+    );
+    renderAdminStudents();
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+async function encryptRoster() {
+  const header = ["課程 (Course)", "學號 (Student No)", "姓名 (Name)", "暱稱 (Nickname)", "密碼 (Password)"];
+  const rows = [];
+  for (const courseKey of Object.keys(studentRoster)) {
+    for (const s of studentRoster[courseKey].students) {
+      rows.push([courseKey, s.id, s.name, s.nickname || "", s.password || s.id]);
+    }
+  }
+  const ws = XLSX.utils.aoa_to_sheet([header, ...rows]);
+  ws["!cols"] = [{ wch: 18 }, { wch: 15 }, { wch: 12 }, { wch: 12 }, { wch: 15 }];
+  const wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Students");
+  const xlsxData = XLSX.write(wb, { type: "array", bookType: "xlsx" });
+
+  const passphrase = "teaching_roster_key_2026";
+  const enc = new TextEncoder();
+  const keyMaterial = await crypto.subtle.importKey("raw", enc.encode(passphrase), "PBKDF2", false, ["deriveKey"]);
+  const key = await crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt: enc.encode("roster_salt"), iterations: 100000, hash: "SHA-256" },
+    keyMaterial, { name: "AES-CBC", length: 256 }, false, ["encrypt"]
+  );
+  const iv = crypto.getRandomValues(new Uint8Array(16));
+  const encrypted = await crypto.subtle.encrypt({ name: "AES-CBC", iv }, key, new Uint8Array(xlsxData));
+
+  const payload = new Uint8Array(iv.length + encrypted.byteLength);
+  payload.set(iv, 0);
+  payload.set(new Uint8Array(encrypted), iv.length);
+
+  let binary = "";
+  for (let i = 0; i < payload.length; i++) binary += String.fromCharCode(payload[i]);
+  return btoa(binary);
+}
+
+async function saveRosterEncrypted() {
+  try {
+    const base64 = await encryptRoster();
+    const blob = new Blob([base64], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "roster.enc";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    _rosterDirty = false;
+
+    showRosterMsg(
+      currentLang === "zh"
+        ? "roster.enc 已下載！請將檔案放入 data/ 資料夾並推送至 GitHub。"
+        : "roster.enc downloaded! Place it in data/ folder and push to GitHub.",
+      "success"
+    );
+  } catch (err) {
+    console.error("Encrypt error:", err);
+    showRosterMsg(currentLang === "zh" ? "加密失敗：" + err.message : "Encryption failed: " + err.message, "error");
+  }
 }
 
 async function resetStudentPwd(studentId, studentName) {

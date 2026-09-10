@@ -360,6 +360,33 @@
       </select>
       <span id="adminStudentCount" class="admin-count"></span>
     </div>
+
+    <!-- Roster Management Actions -->
+    <div class="admin-roster-actions" style="background:var(--primary-lighter);border-radius:var(--radius);padding:1rem;margin-bottom:1rem;">
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;margin-bottom:0.8rem;">
+        <select id="addStudentCourse" style="font-size:0.85rem;padding:0.35rem 0.5rem;border-radius:4px;border:1px solid var(--border);">
+          <option value="course1" data-i18n="course1_title">機器視覺與應用</option>
+          <option value="course2" data-i18n="course2_title">人工智慧與 Python</option>
+          <option value="course3" data-i18n="course3_title">深度學習 PyTorch</option>
+          <option value="course4" data-i18n="course4_title">AI Agent</option>
+          <option value="course5" data-i18n="course5_title">EMBA AI 決策</option>
+          <option value="course6" data-i18n="course6_title">2026 -人工智慧導論與程式語言</option>
+        </select>
+        <input type="text" id="addStudentId" style="font-size:0.85rem;padding:0.35rem 0.5rem;border-radius:4px;border:1px solid var(--border);width:120px;" data-i18n="admin_student_id">
+        <input type="text" id="addStudentName" style="font-size:0.85rem;padding:0.35rem 0.5rem;border-radius:4px;border:1px solid var(--border);width:100px;" data-i18n="admin_student_name">
+        <button class="btn btn-primary" style="font-size:0.82rem;padding:0.35rem 0.8rem;" onclick="addSingleStudent()" data-i18n="admin_roster_add">+ 新增學生</button>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:0.5rem;align-items:center;">
+        <label class="btn btn-outline" style="font-size:0.82rem;padding:0.35rem 0.8rem;cursor:pointer;color:var(--primary);border-color:var(--primary);">
+          <span data-i18n="admin_roster_batch">批次匯入 Excel</span>
+          <input type="file" id="batchUploadFile" accept=".xlsx,.xls" style="display:none;" onchange="batchUploadStudents(this)">
+        </label>
+        <button class="btn btn-primary" style="font-size:0.82rem;padding:0.35rem 0.8rem;background:var(--success);" onclick="saveRosterEncrypted()" data-i18n="admin_roster_save">儲存並下載 roster.enc</button>
+        <button class="btn btn-outline" style="font-size:0.82rem;padding:0.35rem 0.8rem;color:var(--primary);border-color:var(--primary);" onclick="exportStudentsExcel()" data-i18n="admin_export_excel">匯出名冊 Excel</button>
+      </div>
+    </div>
+    <p id="adminRosterMsg" style="display:none;text-align:center;padding:0.5rem;margin:0 0 0.5rem;border-radius:6px;font-size:0.85rem;"></p>
+
     <div class="admin-table-wrap">
       <table class="admin-table" id="adminStudentTable">
         <thead>
@@ -369,7 +396,7 @@
             <th data-i18n="admin_student_name">姓名</th>
             <th data-i18n="admin_select_course">課程</th>
             <th data-i18n="admin_student_pwd_status">密碼狀態</th>
-            <th data-i18n="admin_reset_pwd">操作</th>
+            <th data-i18n="admin_roster_actions_col">操作</th>
           </tr>
         </thead>
         <tbody id="adminStudentBody"></tbody>
