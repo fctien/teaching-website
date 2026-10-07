@@ -385,14 +385,91 @@ function renderApps() {
 // Videos now handled by youtube.js
 
 // ===== Quiz =====
-let quizState = { course: null, current: 0, answers: [], submitted: false };
+let quizState = { course: null, week: null, current: 0, answers: [], submitted: false };
+
+function _isWeeklyCourse(courseKey) {
+  return typeof weeklyQuizData !== "undefined" && weeklyQuizData[courseKey];
+}
+
+function _getWeeklyMeta(courseKey) {
+  if (!_isWeeklyCourse(courseKey)) return null;
+  return weeklyQuizData[courseKey];
+}
 
 function selectQuizCourse(courseKey) {
-  quizState = { course: courseKey, current: 0, answers: [], submitted: false };
+  quizState = { course: courseKey, week: null, current: 0, answers: [], submitted: false };
   document.querySelectorAll(".quiz-course-btn").forEach((btn) => {
     btn.classList.toggle("selected", btn.getAttribute("data-course") === courseKey);
   });
+
+  const weekSelect = document.getElementById("quizWeekSelect");
+  const area = document.getElementById("quizArea");
+  const resultBox = document.getElementById("quizResult");
+  if (area) area.style.display = "none";
+  if (resultBox) resultBox.style.display = "none";
+
+  if (_isWeeklyCourse(courseKey)) {
+    weekSelect.style.display = "block";
+    renderWeekSelect(courseKey);
+  } else {
+    weekSelect.style.display = "none";
+    renderQuiz();
+  }
+}
+
+function renderWeekSelect(courseKey) {
+  const grid = document.getElementById("quizWeekGrid");
+  const title = document.getElementById("quizWeekTitle");
+  if (!grid) return;
+
+  const meta = _getWeeklyMeta(courseKey);
+  const weeks = meta.weeks;
+  title.textContent = currentLang === "zh" ? "選擇週次" : "Select Week";
+
+  grid.innerHTML = weeks.map((w) => {
+    const label = currentLang === "zh" ? w.title_zh : w.title_en;
+    const sel = quizState.week === w.key ? "selected" : "";
+    return `<button class="quiz-week-btn ${sel}" data-week="${w.key}" onclick="selectQuizWeek('${w.key}')">
+      <span class="week-num">${w.key.toUpperCase()}</span>${escapeHtml(label)}
+    </button>`;
+  }).join("");
+}
+
+function selectQuizWeek(weekKey) {
+  quizState.week = weekKey;
+  quizState.current = 0;
+  quizState.answers = [];
+  quizState.submitted = false;
+
+  document.querySelectorAll(".quiz-week-btn").forEach((btn) => {
+    btn.classList.toggle("selected", btn.getAttribute("data-week") === weekKey);
+  });
   renderQuiz();
+}
+
+function _getQuizQuestions() {
+  const { course, week } = quizState;
+  if (_isWeeklyCourse(course) && week) {
+    const data = weeklyQuizData[course];
+    const langData = data[currentLang] || data["zh"];
+    return langData[week] || [];
+  }
+  if (quizData[course]) {
+    return quizData[course][currentLang] || quizData[course]["zh"];
+  }
+  return [];
+}
+
+function _getQuizAnswerIndex(course, lang, week, index) {
+  const key = _getAnswerKey();
+  if (week) {
+    const wk = key[course]?.[lang]?.[week] || key[course]?.["zh"]?.[week];
+    if (wk) return wk[index];
+  }
+  const langObj = key[course]?.[lang] || key[course]?.["zh"];
+  if (Array.isArray(langObj)) return langObj[index];
+  if (langObj?._flat) return langObj._flat[index];
+  return -1;
 }
 
 function renderQuiz() {
@@ -400,7 +477,8 @@ function renderQuiz() {
   const resultBox = document.getElementById("quizResult");
   if (!area) return;
 
-  if (!quizState.course) {
+  const isWeekly = _isWeeklyCourse(quizState.course);
+  if (!quizState.course || (isWeekly && !quizState.week)) {
     area.style.display = "none";
     return;
   }
@@ -415,7 +493,7 @@ function renderQuiz() {
   resultBox.style.display = "none";
   area.style.display = "block";
 
-  const questions = quizData[quizState.course][currentLang] || quizData[quizState.course]["zh"];
+  const questions = _getQuizQuestions();
   const q = questions[quizState.current];
   const total = questions.length;
   const idx = quizState.current;
@@ -469,26 +547,22 @@ function _getAnswerKey() {
   return window._cachedQK;
 }
 
-function _getAnswer(course, lang, index) {
-  const key = _getAnswerKey();
-  const answers = key[course]?.[lang] || key[course]?.["zh"];
-  return answers ? answers[index] : -1;
-}
 
 async function submitQuiz() {
   quizState.submitted = true;
 
   if (currentUser) {
-    const questions = quizData[quizState.course][currentLang] || quizData[quizState.course]["zh"];
-    const lang = quizData[quizState.course][currentLang] ? currentLang : "zh";
+    const questions = _getQuizQuestions();
+    const lang = currentLang;
     let correct = 0;
-    questions.forEach((q, i) => { if (quizState.answers[i] === _getAnswer(quizState.course, lang, i)) correct++; });
+    questions.forEach((q, i) => { if (quizState.answers[i] === _getQuizAnswerIndex(quizState.course, lang, quizState.week, i)) correct++; });
     const pct = Math.round((correct / questions.length) * 100);
 
     let quizResults = JSON.parse(localStorage.getItem("quizResults")) || [];
     const record = {
       userId: currentUser.username,
       course: quizState.course,
+      week: quizState.week || null,
       score: pct,
       correct: correct,
       total: questions.length,
@@ -503,10 +577,10 @@ async function submitQuiz() {
 }
 
 function showQuizResult() {
-  const questions = quizData[quizState.course][currentLang] || quizData[quizState.course]["zh"];
-  const lang = quizData[quizState.course][currentLang] ? currentLang : "zh";
+  const questions = _getQuizQuestions();
+  const lang = currentLang;
   let correct = 0;
-  questions.forEach((q, i) => { if (quizState.answers[i] === _getAnswer(quizState.course, lang, i)) correct++; });
+  questions.forEach((q, i) => { if (quizState.answers[i] === _getQuizAnswerIndex(quizState.course, lang, quizState.week, i)) correct++; });
   const pct = Math.round((correct / questions.length) * 100);
 
   document.getElementById("quizScoreNum").textContent = pct + "%";
@@ -514,7 +588,7 @@ function showQuizResult() {
 }
 
 function retryQuiz() {
-  quizState = { course: quizState.course, current: 0, answers: [], submitted: false };
+  quizState = { course: quizState.course, week: quizState.week, current: 0, answers: [], submitted: false };
   document.getElementById("quizResult").style.display = "none";
   renderQuiz();
 }
@@ -614,6 +688,7 @@ function onLanguageChange() {
   renderHomework();
   renderCourseTopics();
   renderResearchTags();
+  if (quizState.course && _isWeeklyCourse(quizState.course)) renderWeekSelect(quizState.course);
   if (quizState.course && !quizState.submitted) renderQuiz();
   updateAuthUI();
   // Refresh admin panels if visible
