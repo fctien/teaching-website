@@ -385,6 +385,112 @@ const quizData = {
       },
     ],
   },
+  course7: {
+    zh: [
+      {
+        q: "人工智慧（AI）最早的學術定義出現在哪一年？",
+        options: ["1936 年", "1943 年", "1956 年", "1969 年"],
+
+      },
+      {
+        q: "下列何者屬於「非監督式學習」的典型應用？",
+        options: ["影像分類", "分群（Clustering）", "物件偵測", "語音辨識"],
+
+      },
+      {
+        q: "反向傳播（Backpropagation）的主要目的是？",
+        options: ["產生訓練資料", "計算損失函數對每個權重的梯度", "壓縮模型大小", "選擇最佳超參數"],
+
+      },
+      {
+        q: "Transformer 架構中，Self-Attention 機制的核心運算是？",
+        options: ["卷積", "Query-Key-Value 點積", "池化", "遞迴連接"],
+
+      },
+      {
+        q: "AI Agent 中 ReAct 迴圈的步驟順序是？",
+        options: ["Action → Reasoning → Observation", "Reasoning → Action → Observation", "Observation → Action → Reasoning", "Action → Observation → Reasoning"],
+
+      },
+      {
+        q: "CNN 中卷積層（Convolution Layer）的主要功能是？",
+        options: ["降低特徵圖維度", "擷取局部空間特徵", "正規化輸出", "連接全連接層"],
+
+      },
+      {
+        q: "LLM 訓練的三個階段依序為？",
+        options: ["微調 → 預訓練 → RLHF", "預訓練 → 監督微調 → RLHF", "RLHF → 預訓練 → 微調", "預訓練 → RLHF → 監督微調"],
+
+      },
+      {
+        q: "RAG（Retrieval-Augmented Generation）的主要目的是？",
+        options: ["加速模型訓練", "讓 LLM 存取外部知識以減少幻覺", "壓縮模型參數", "取代微調"],
+
+      },
+      {
+        q: "感知機（Perceptron）無法解決的經典問題是？",
+        options: ["AND 邏輯閘", "OR 邏輯閘", "XOR 邏輯閘", "NOT 邏輯閘"],
+
+      },
+      {
+        q: "「主權 AI（Sovereign AI）」的核心概念是？",
+        options: ["由單一企業壟斷 AI 技術", "國家建立自主的 AI 基礎設施與能力", "AI 具有自我意識", "AI 取代政府決策"],
+
+      },
+    ],
+    en: [
+      {
+        q: "In which year did the earliest academic definition of AI emerge?",
+        options: ["1936", "1943", "1956", "1969"],
+
+      },
+      {
+        q: "Which is a typical application of unsupervised learning?",
+        options: ["Image classification", "Clustering", "Object detection", "Speech recognition"],
+
+      },
+      {
+        q: "What is the main purpose of Backpropagation?",
+        options: ["Generate training data", "Compute gradients of the loss w.r.t. each weight", "Compress model size", "Select optimal hyperparameters"],
+
+      },
+      {
+        q: "What is the core operation in the Self-Attention mechanism of the Transformer?",
+        options: ["Convolution", "Query-Key-Value dot product", "Pooling", "Recurrent connection"],
+
+      },
+      {
+        q: "What is the correct step order in the ReAct loop of an AI Agent?",
+        options: ["Action → Reasoning → Observation", "Reasoning → Action → Observation", "Observation → Action → Reasoning", "Action → Observation → Reasoning"],
+
+      },
+      {
+        q: "What is the main function of a Convolution Layer in CNN?",
+        options: ["Reduce feature map dimensions", "Extract local spatial features", "Normalize output", "Connect to fully-connected layers"],
+
+      },
+      {
+        q: "What are the three stages of LLM training in order?",
+        options: ["Fine-tuning → Pre-training → RLHF", "Pre-training → Supervised Fine-tuning → RLHF", "RLHF → Pre-training → Fine-tuning", "Pre-training → RLHF → Supervised Fine-tuning"],
+
+      },
+      {
+        q: "What is the main purpose of RAG (Retrieval-Augmented Generation)?",
+        options: ["Speed up model training", "Let LLM access external knowledge to reduce hallucination", "Compress model parameters", "Replace fine-tuning"],
+
+      },
+      {
+        q: "Which classic problem can a single Perceptron NOT solve?",
+        options: ["AND gate", "OR gate", "XOR gate", "NOT gate"],
+
+      },
+      {
+        q: "What is the core concept of 'Sovereign AI'?",
+        options: ["AI technology monopolized by a single company", "Nations building autonomous AI infrastructure and capabilities", "AI having self-awareness", "AI replacing government decisions"],
+
+      },
+    ],
+  },
 };
 
 const homeworkData = {

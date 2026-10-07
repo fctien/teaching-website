@@ -90,7 +90,7 @@ async function initStudentAccounts() {
       password: supervisorAccount.passwordHash,
       role: supervisorAccount.role,
       name: supervisorAccount.name,
-      courses: ["course1", "course2", "course3", "course4", "course5", "course6"],
+      courses: ["course1", "course2", "course3", "course4", "course5", "course6", "course7"],
     };
   }
 

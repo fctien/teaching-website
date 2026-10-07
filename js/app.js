@@ -623,7 +623,7 @@ function onLanguageChange() {
 }
 
 function renderCourseTopics() {
-  for (let i = 1; i <= 6; i++) {
+  for (let i = 1; i <= 7; i++) {
     const el = document.getElementById(`course${i}Topics`);
     if (!el) continue;
     const topics = t(`course${i}_topics`).split(",");
