@@ -972,6 +972,27 @@ img {
   background: #fff5f5;
 }
 
+.quiz-option input[type="radio"]:disabled {
+  pointer-events: none;
+}
+.quiz-option:has(input:disabled) {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.85;
+}
+.quiz-option:has(input:disabled):hover {
+  border-color: var(--border);
+  background: inherit;
+}
+.quiz-option.correct:has(input:disabled):hover {
+  border-color: var(--success);
+  background: #f0fff4;
+}
+.quiz-option.wrong:has(input:disabled):hover {
+  border-color: var(--accent);
+  background: #fff5f5;
+}
+
 .quiz-option input[type="radio"] {
   accent-color: var(--primary);
 }

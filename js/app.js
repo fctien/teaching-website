@@ -506,17 +506,28 @@ function renderQuiz() {
 
   document.getElementById("quizQuestion").textContent = q.q;
 
+  const answered = quizState.answers[idx] !== undefined;
+  const correctIdx = _getQuizAnswerIndex(quizState.course, currentLang, quizState.week, idx);
+
   const optionsEl = document.getElementById("quizOptions");
   optionsEl.innerHTML = q.options
-    .map(
-      (opt, i) => `
-    <label class="quiz-option ${quizState.answers[idx] === i ? "selected" : ""}">
+    .map((opt, i) => {
+      let cls = "quiz-option";
+      if (answered) {
+        if (i === correctIdx) cls += " correct";
+        else if (i === quizState.answers[idx]) cls += " wrong";
+      } else if (quizState.answers[idx] === i) {
+        cls += " selected";
+      }
+      return `
+    <label class="${cls}">
       <input type="radio" name="quizOpt" value="${i}"
         ${quizState.answers[idx] === i ? "checked" : ""}
+        ${answered ? "disabled" : ""}
         onchange="quizState.answers[${idx}]=${i}; renderQuiz();">
-      ${opt}
-    </label>`
-    )
+      ${answered && i === correctIdx ? "✔ " : ""}${answered && i === quizState.answers[idx] && i !== correctIdx ? "✘ " : ""}${opt}
+    </label>`;
+    })
     .join("");
 
   document.getElementById("quizPrevBtn").style.visibility = idx > 0 ? "visible" : "hidden";
@@ -528,6 +539,7 @@ function renderQuiz() {
     nextBtn.textContent = t("quiz_next");
     nextBtn.onclick = () => { quizState.current++; renderQuiz(); };
   }
+  nextBtn.disabled = !answered;
 }
 
 function quizPrev() {
