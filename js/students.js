@@ -24,7 +24,7 @@ async function decryptRoster(base64Payload) {
 
 async function loadStudentRoster() {
   try {
-    const res = await fetch("data/roster.enc?v=20260816");
+    const res = await fetch("data/roster.enc?v=20261013");
     const payload = await res.text();
     const xlsxData = await decryptRoster(payload);
     const wb = XLSX.read(xlsxData, { type: "array" });
